@@ -1,12 +1,12 @@
 function setup() {
   createCanvas(500, 500);
-  background(255);
+  background(0);
 }
 
 let x = 100
 
 function draw() {
-  background(255);
+  background(0);
   ellipse(x, 450, 25, 25);
 
   if (keyIsDown(LEFT_ARROW)) {
@@ -16,7 +16,6 @@ function draw() {
     if (keyIsDown(RIGHT_ARROW)) {
         x += 5;
     }
-
-  
 }
+
 
