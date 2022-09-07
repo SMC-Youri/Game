@@ -24,6 +24,28 @@ function draw() {
     if (keyIsDown(DOWN_ARROW)) {
         y += 5;
     }
+
+    if(frameCount % 100 == 0){
+    // spawn!
+    balls.push(new Ball());
+  }
+
+  balls.forEach((b) => {
+    b.draw();
+  });
 }
 
+class Ball{
+  constructor(){
+    this.x = random(width);
+    this.y = 0;
+  }
+
+  draw(){
+    circle(this.x, this.y, 30);
+    this.y += 5;
+  }
+}
+
+var balls = [];
 
