@@ -1,10 +1,10 @@
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(1500, 800);
   background(0);
 }
 
 let x = 100
-let y = 450
+let y = 750
 
 function draw() {
   background(0);
