@@ -11,18 +11,18 @@ function draw() {
   ellipse(x, y, 25, 25);
 
   if (keyIsDown(LEFT_ARROW)) {
-        x -= 5;
+        x -= 8;
     }
   
     if (keyIsDown(RIGHT_ARROW)) {
-        x += 5;
+        x += 8;
     }
     if (keyIsDown(UP_ARROW)) {
-        y -= 5;
+        y -= 8;
     }
   
     if (keyIsDown(DOWN_ARROW)) {
-        y += 5;
+        y += 8;
     }
 
     if(frameCount % 100 == 0){
@@ -43,7 +43,7 @@ class Ball{
 
   draw(){
     circle(this.x, this.y, 30);
-    this.y += 5;
+    this.y += 4;
   }
 }
 
