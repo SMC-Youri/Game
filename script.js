@@ -18,10 +18,18 @@ function draw() {
   }
 
   if (gameState == 1) {
-    game();
+    monkey();
   }
 
   if (gameState == 2) {
+    minion();
+  }
+
+  if (gameState == 3) {
+    victory();
+  }
+
+  if (gameState == 4) {
     gameOver();
   }
 }
@@ -36,7 +44,7 @@ function menu() {
   text("3. game over", 25, 105);
 }
 
-function game() {
+function monkey() {
   background(0);
   ellipse(x, y, 25, 25);
 
@@ -73,17 +81,25 @@ function gameOver() {
 
 function keyPressed() {
 
-  if (keyCode == 49) {
+  if (keyCode == 27) {
     gameState = 0;
   }
 
-  if (keyCode == 50) {
+  if (keyCode == 49) {
     gameState = 1;
   }
 
-  if (keyCode == 51) {
+  if (keyCode == 50) {
     gameState = 2;
   }
+
+  if (keyCode == 51) {
+  gameState = 3;
+  }
+
+   if (keyCode == 52) {
+  gameState = 4;
+  } 
 }
 
 class Ball{
@@ -94,7 +110,7 @@ class Ball{
 
   draw(){
     circle(this.x, this.y, 30);
-    this.y += 4;
+    this.y += 3;
   }
 }
 
