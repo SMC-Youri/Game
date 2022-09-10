@@ -7,12 +7,15 @@ function setup() {
 let x = 750
 let y = 650
 
-let w = 20;
-let h = 20;
+let w = 30;
+let h = 30;
 
-let img;
+let img1;
+let img2;
 function preload() {
-  img = loadImage('monkey.png');
+  img1 = loadImage('monkey.png');
+  img2 = loadImage('banana.png');
+  img3 = loadImage('banana-peel.png');
 }
 
 var gameState = 0;
@@ -57,7 +60,7 @@ function monkey() {
   textSize(40);
   text("score:", 25, 40);
 
-  image(img, x, y, 70, 70,);
+  image(img1, x, y, 70, 70,);
 
   if (keyIsDown(LEFT_ARROW)) {
         x -= 10;
@@ -78,6 +81,10 @@ function monkey() {
 
     balls.push(new Ball());
   }
+
+  //if (this.y <= 650){
+  // img2 = img3 
+  //}
 
   if (x >= this.x-w/2 && x <= this.x+w/2) {
   if (y >= this.y-h/2 && y <= this.y+y/2) {
@@ -123,12 +130,12 @@ function keyPressed() {
 class Ball{
   constructor(){
     this.x = random(width);
-    this.y = 0;
+    this.y = 55;
   }
 
   draw(){
-    rect(this.x, this.y, w, h);
-    this.y += 2.5;
+    image(img2, this.x, this.y, w, h);
+    this.y += 1.5;
   }
 }
 
