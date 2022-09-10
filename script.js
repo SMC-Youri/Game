@@ -1,13 +1,21 @@
 function setup() {
   createCanvas(1500, 800);
   background(0);
+  jungle = loadImage('jungle.jpg');
 }
 
-let x = 100
-let y = 750
+let x = 750
+let y = 650
 
+let w = 20;
+let h = 20;
 
-var gameState = 0; // 0 = menu, 1 = game, 2 = gameover
+let img;
+function preload() {
+  img = loadImage('monkey.png');
+}
+
+var gameState = 0;
 
 function draw() {
 
@@ -45,29 +53,39 @@ function menu() {
 }
 
 function monkey() {
-  background(0);
-  ellipse(x, y, 25, 25);
+  background(jungle); 
+  textSize(40);
+  text("score:", 25, 40);
+
+  image(img, x, y, 70, 70,);
 
   if (keyIsDown(LEFT_ARROW)) {
-        x -= 8;
+        x -= 10;
     }
   
     if (keyIsDown(RIGHT_ARROW)) {
-        x += 8;
+        x += 10;
     }
-    if (keyIsDown(UP_ARROW)) {
-        y -= 8;
-    }
+    //if (keyIsDown(UP_ARROW)) {
+    //    y -= 10;
+    //}
   
-    if (keyIsDown(DOWN_ARROW)) {
-        y += 8;
-    }
+    //if (keyIsDown(DOWN_ARROW)) {
+    //    y += 10;
+    //}
 
     if(frameCount % 100 == 0){
-    // spawn!
+
     balls.push(new Ball());
   }
 
+  if (x >= this.x-w/2 && x <= this.x+w/2) {
+  if (y >= this.y-h/2 && y <= this.y+y/2) {
+      this.y = -1000;
+    }
+  }
+
+    
   balls.forEach((b) => {
     b.draw();
   });
@@ -109,8 +127,8 @@ class Ball{
   }
 
   draw(){
-    circle(this.x, this.y, 30);
-    this.y += 3;
+    rect(this.x, this.y, w, h);
+    this.y += 2.5;
   }
 }
 
