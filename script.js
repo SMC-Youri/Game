@@ -2,6 +2,8 @@ function setup() {
   createCanvas(1500, 800);
   background(0);
   jungle = loadImage('jungle.jpg');
+  textFont("atari", 25);
+  textSize(40);
 }
 
 function preload() {
@@ -61,8 +63,6 @@ function menu() {
 
 function monkey() {
   background(jungle);
-  textFont("atari", 25);
-  textSize(40);
   text("score:", 25, 45);
   text(score, 250, 45);
 
