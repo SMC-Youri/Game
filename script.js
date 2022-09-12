@@ -87,7 +87,7 @@ function monkey() {
   for (let i = 0; i < balls.length; i++) {
     let ball = balls[i];
 
-    if(x < ball.x + x && x + 70 > ball.x && y < ball.y + h && 70 + y > ball.y)
+    if(x < ball.x + w && x + 70 > ball.x && y < ball.y + h && 70 + y > ball.y)
     {
       score += 1;
 
