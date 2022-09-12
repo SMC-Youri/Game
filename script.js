@@ -10,11 +10,12 @@ function preload() {
   img3 = loadImage('banana-peel.png');
 }
 
-let x = 750
-let y = 650
-let w = 30;
-let h = 30;
-
+let px = 725;
+let py = 630;
+let bw = 30;
+let bh = 30;
+let pl = 85;
+let pw = 85;
 let ballx = this.x;
 let bally = this.y;
 
@@ -23,9 +24,6 @@ var gameState = 0;
 var score = 0;
 var a = 0;
 var balls = [];
-
-let img1;
-let img2;
 
 function draw() {
 
@@ -66,49 +64,43 @@ function monkey() {
   text("score:", 25, 40);
   text(score, 135, 43);
 
-  image(img1, x, y, 70, 70,);
+  image(img1, px, py, pl, pw,);
 
   if (keyIsDown(LEFT_ARROW)) {
-    x -= 10;
+    px -= 10;
   }
 
   if (keyIsDown(RIGHT_ARROW)) {
-    x += 10;
+    px += 10;
   }
 
-  //if (keyIsDown(UP_ARROW)) {
-  //    y -= 10;
-  //}
+  if (px <= -80){
+    px = 1499;
+  }
 
-  //if (keyIsDown(DOWN_ARROW)) {
-  //    y += 10;
-  //}
+  if (px >= 1500){
+    px = -79;
+  }
+
+
+
+
+  
 
   for (let i = 0; i < balls.length; i++) {
     let ball = balls[i];
 
-    if(x < ball.x + w && x + 70 > ball.x && y < ball.y + h && 70 + y > ball.y)
-    {
+    if(px < ball.x + bw && px + pl > ball.x && py < ball.y + bh && pw + py > ball.y){
       score += 1;
-
-       //skips collision check for the ball at index i+1 for one frame. Can be resolved by using a foreach statement - Marijn Kneppers
+//skips collision check for the ball at index i+1 for one frame. Can be resolved by using a foreach statement - Marijn Kneppers
       balls.splice(i, 1);
     }
   }
-
-
 
   if (frameCount % 100 == 0) {
 
     balls.push(new Ball());
   }
-
-  //if (this.y <= 650){
-  // img2 = img3 
-  //}
-
-
-
 
   balls.forEach((b) => {
     b.draw();
@@ -118,7 +110,6 @@ function monkey() {
 function gameOver() {
   background("green");
   text("GAME OVER", 25, 45);
-  x = 0;
 }
 
 function keyPressed() {
@@ -152,7 +143,9 @@ class Ball {
   }
 
   draw() {
-    image(img2, this.x, this.y, w, h);
-    this.y += 1.5;
+    image(img2, this.x, this.y, bw, bh);
+    this.y += 2;
   }
 }
+
+x
