@@ -5,6 +5,7 @@ function setup() {
 }
 
 function preload() {
+  atari = loadFont('atari.otf');
   img1 = loadImage('monkey.png');
   img2 = loadImage('banana.png');
   img3 = loadImage('banana-peel.png');
@@ -60,9 +61,10 @@ function menu() {
 
 function monkey() {
   background(jungle);
+  textFont("atari", 25);
   textSize(40);
-  text("score:", 25, 40);
-  text(score, 135, 43);
+  text("score:", 25, 45);
+  text(score, 250, 45);
 
   image(img1, px, py, pl, pw,);
 
@@ -95,7 +97,11 @@ function monkey() {
 //skips collision check for the ball at index i+1 for one frame. Can be resolved by using a foreach statement - Marijn Kneppers
       balls.splice(i, 1);
     }
-  }
+    
+  //if (ball.y >= 650){
+  //  gameState = 4;
+  //} 
+}
 
   if (frameCount % 100 == 0) {
 
@@ -139,13 +145,10 @@ class Ball {
   constructor() {
     this.x = random(width);
     this.y = 55;
-
   }
-
+  
   draw() {
     image(img2, this.x, this.y, bw, bh);
     this.y += 2;
   }
 }
-
-x
