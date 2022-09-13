@@ -2,6 +2,7 @@ function setup() {
   createCanvas(1500, 800);
   background(0);
   jungle = loadImage('jungle.jpg');
+  char_sel = loadImage('char_sel.jpg');
   textFont("atari", 25);
   textSize(40);
 }
@@ -91,9 +92,14 @@ function menu() {
   text("3. game over", 25, 105);
 }
 
-function characters() {
-  loop();
-  background("#ababab");
+function characters (){
+  background(char_sel);
+  text("1", 365, 360);
+  text("2", 365, 655);
+  text("3", 740, 360);
+  text("4", 740, 655);
+  text("5", 1080, 360);
+  text("6", 1080, 655);
 }
 
 function donkeykong() {
@@ -149,32 +155,32 @@ function diddykong() {
 }
 
 function mario(){
-  
+  background("#ababab");
 }
 
 function luigi(){
-  
+  background("#ababab");
 }
 
 function link(){
-  
+  background("#ababab");
 }
 
 function minion(){
-  
+  background("#ababab");
 }
 
 function gameover(){
-  
+  background("#ababab");
 }
 
 function newhighscore(){
-  
+  background("#ababab");
 }
 
 function keyPressed() {
 
-  if (keyCode == 0) {  //KC 27 = esc
+  if (keyCode == 0) {
     gameState = 0;
   }
 
