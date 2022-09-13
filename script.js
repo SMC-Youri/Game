@@ -11,6 +11,8 @@ function preload() {
   img1 = loadImage('monkey.png');
   img2 = loadImage('banana.png');
   img3 = loadImage('banana-peel.png');
+  img4 = loadImage('dk.png');
+  img5 = loadImage('dk_left.png');
 }
 
 let px = 725;
@@ -37,7 +39,7 @@ function draw() {
   }
 
   if (gameState == 1) {
-    monkey();
+    donkeykong();
   }
 
   if (gameState == 2) {
@@ -61,19 +63,19 @@ function menu() {
   text("3. game over", 25, 105);
 }
 
-function monkey() {
+function donkeykong() {
   background(jungle);
   text("score:", 25, 45);
   text(score, 250, 45);
 
-  image(img1, px, py, pl, pw,);
-
   if (keyIsDown(LEFT_ARROW)) {
     px -= 10;
-  }
-
-  if (keyIsDown(RIGHT_ARROW)) {
+    image(img5, px, py, pl, pw,);
+  } else if (keyIsDown(RIGHT_ARROW)) {
     px += 10;
+    image(img4, px, py, pl, pw,);
+  } else {
+    image(img4, px, py, pl, pw,);
   }
 
   if (px <= -80){
@@ -149,6 +151,6 @@ class Ball {
   
   draw() {
     image(img2, this.x, this.y, bw, bh);
-    this.y += 2;
+    this.y += 3;
   }
 }
