@@ -8,11 +8,19 @@ function setup() {
 
 function preload() {
   atari = loadFont('atari.otf');
-  img1 = loadImage('monkey.png');
-  img2 = loadImage('banana.png');
-  img3 = loadImage('banana-peel.png');
-  img4 = loadImage('dk.png');
-  img5 = loadImage('dk_left.png');
+  img1 = loadImage('banana.png');
+  img2 = loadImage('dk_r.png');
+  img3 = loadImage('dk_l.png');
+  img4 = loadImage('diddy_r.png');
+  img5 = loadImage('diddy_l.png');
+  img6 = loadImage('mario_r.png');
+  img7 = loadImage('mario_l.png');
+  img8 = loadImage('luigi_r.png');
+  img9 = loadImage('luigi_l.png');
+  img10 = loadImage('link_r.png');
+  img11 = loadImage('link_l.png');
+  img12 = loadImage('minion_r.png');
+  img13 = loadImage('minion_l.png');
 }
 
 let px = 725;
@@ -39,19 +47,39 @@ function draw() {
   }
 
   if (gameState == 1) {
-    donkeykong();
+    characters();
   }
 
   if (gameState == 2) {
-    minion();
+    donkeykong();
   }
 
   if (gameState == 3) {
-    victory();
+    diddykong();
   }
 
   if (gameState == 4) {
-    gameOver();
+    mario();
+  }
+
+  if (gameState == 5) {
+    luigi();
+  }
+
+  if (gameState == 6) {
+    link();
+  }
+
+  if (gameState == 7) {
+    minion();
+  }
+
+  if (gameState == 8) {
+    gameover();
+  }
+
+  if (gameState == 9) {
+    newhighscore();
   }
 }
 
@@ -63,6 +91,11 @@ function menu() {
   text("3. game over", 25, 105);
 }
 
+function characters() {
+  loop();
+  background("#ababab");
+}
+
 function donkeykong() {
   background(jungle);
   text("score:", 25, 45);
@@ -70,12 +103,12 @@ function donkeykong() {
 
   if (keyIsDown(LEFT_ARROW)) {
     px -= 10;
-    image(img5, px, py, pl, pw,);
+    image(img3, px, py, pl, pw,);
   } else if (keyIsDown(RIGHT_ARROW)) {
     px += 10;
-    image(img4, px, py, pl, pw,);
+    image(img2, px, py, pl, pw,);
   } else {
-    image(img4, px, py, pl, pw,);
+    image(img2, px, py, pl, pw,);
   }
 
   if (px <= -80){
@@ -85,12 +118,7 @@ function donkeykong() {
   if (px >= 1500){
     px = -79;
   }
-
-
-
-
   
-
   for (let i = 0; i < balls.length; i++) {
     let ball = balls[i];
 
@@ -100,9 +128,9 @@ function donkeykong() {
       balls.splice(i, 1);
     }
     
-  //if (ball.y >= 650){
-  //  gameState = 4;
-  //} 
+  if (ball.y >= 650){
+    gameState = 5;
+  } 
 }
 
   if (frameCount % 100 == 0) {
@@ -115,31 +143,75 @@ function donkeykong() {
   });
 }
 
-function gameOver() {
+function diddykong() {
   background("green");
   text("GAME OVER", 25, 45);
 }
 
+function mario(){
+  
+}
+
+function luigi(){
+  
+}
+
+function link(){
+  
+}
+
+function minion(){
+  
+}
+
+function gameover(){
+  
+}
+
+function newhighscore(){
+  
+}
+
 function keyPressed() {
 
-  if (keyCode == 27) {
+  if (keyCode == 0) {  //KC 27 = esc
     gameState = 0;
   }
 
-  if (keyCode == 49) {
+  if (keyCode == 13) {
     gameState = 1;
   }
 
-  if (keyCode == 50) {
+  if (keyCode == 49) {
     gameState = 2;
   }
 
-  if (keyCode == 51) {
+  if (keyCode == 50) {
     gameState = 3;
   }
 
-  if (keyCode == 52) {
+  if (keyCode == 51) {
     gameState = 4;
+  }
+
+  if (keyCode == 52) {
+    gameState = 5;
+  }
+
+  if (keyCode == 53) {
+    gameState = 6;
+  }
+
+  if (keyCode == 54) {
+    gameState = 7;
+  }
+
+  if (keyCode == 1) {
+    gameState = 8;
+  }
+
+  if (keyCode == 2) {
+    gameState = 9;
   }
 }
 
@@ -150,7 +222,7 @@ class Ball {
   }
   
   draw() {
-    image(img2, this.x, this.y, bw, bh);
+    image(img1, this.x, this.y, bw, bh);
     this.y += 3;
   }
 }
