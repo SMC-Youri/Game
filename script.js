@@ -3,6 +3,7 @@ function setup() {
   background(0);
   jungle = loadImage('jungle.jpg');
   char_sel = loadImage('char_sel.jpg');
+  title = loadImage('title.jpg');
   textFont("atari", 25);
   textSize(40);
 }
@@ -87,11 +88,7 @@ function draw() {
 }
 
 function menu() {
-  background("#ababab");
-  text("MENU", 25, 45);
-  text("1. menu", 25, 65);
-  text("2. start game", 25, 85);
-  text("3. game over", 25, 105);
+  background(title);
 }
 
 function characters (){
@@ -194,7 +191,7 @@ function gameover(){
 function newhighscore(){
   background("green");
   text("New highscore:", 500, 300,)
-  text(highscore, 700, 350,)
+  text(highscore, 750, 375,)
   text("press ENTER to continue", 350, 500,);
 }
 
