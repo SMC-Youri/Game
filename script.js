@@ -143,6 +143,11 @@ function donkeykong() {
   } 
 }
 
+  if (lives <= 0){
+    gameState = 1
+    lives = 3
+  }
+
   if (frameCount % 100 == 0) {
 
     balls.push(new Ball());
