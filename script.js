@@ -36,6 +36,7 @@ let bally = this.y;
 
 var gameState = 0;
 var score = 0;
+var highscore = 0;
 var lives = 3;
 var a = 0;
 var balls = [];
@@ -143,9 +144,15 @@ function donkeykong() {
   } 
 }
 
-  if (lives <= 0){
-    gameState = 1
-    lives = 3
+  if (lives <= 0 && score > highscore){
+    gameState = 9;
+    highscore = score;
+    lives = 3;
+    score = 0;
+  } else if (lives <= 0 && score <= highscore){
+  gameState = 8;
+  lives = 3;
+  score = 0;
   }
 
   if (frameCount % 100 == 0) {
@@ -180,11 +187,12 @@ function minion(){
 }
 
 function gameover(){
-  background("#ababab");
+  background("blue");
+  text("gameover");
 }
 
 function newhighscore(){
-  background("#ababab");
+  background("green");
 }
 
 function keyPressed() {
