@@ -36,6 +36,7 @@ let bally = this.y;
 
 var gameState = 0;
 var score = 0;
+var lives = 3;
 var a = 0;
 var balls = [];
 
@@ -106,6 +107,8 @@ function donkeykong() {
   background(jungle);
   text("score:", 25, 45);
   text(score, 250, 45);
+  text("lives:", 1220, 45);
+  text(lives, 1450, 45);
 
   if (keyIsDown(LEFT_ARROW)) {
     px -= 10;
@@ -134,8 +137,9 @@ function donkeykong() {
       balls.splice(i, 1);
     }
     
-  if (ball.y >= 650){
-    gameState = 5;
+  if (ball.y >= 700){
+    lives -= 1;
+    balls.splice(i, 1);
   } 
 }
 
