@@ -193,6 +193,9 @@ function gameover(){
 
 function newhighscore(){
   background("green");
+  text("New highscore:", 500, 300,)
+  text(highscore, 700, 350,)
+  text("press ENTER to continue", 350, 500,);
 }
 
 function keyPressed() {
