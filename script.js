@@ -1,9 +1,9 @@
 function setup() {
   createCanvas(1500, 800);
   background(0);
-  jungle = loadImage('jungle.jpg');
-  char_sel = loadImage('char_sel.jpg');
-  title = loadImage('title.jpg');
+  jungle = loadImage('background/jungle.jpg');
+  char_sel = loadImage('background/char_sel.jpg');
+  title = loadImage('background/title.jpg');
   textFont("atari", 25);
   textSize(40);
 }
@@ -11,18 +11,22 @@ function setup() {
 function preload() {
   atari = loadFont('atari.otf');
   img1 = loadImage('banana.png');
-  img2 = loadImage('dk_r.png');
-  img3 = loadImage('dk_l.png');
-  img4 = loadImage('diddy_r.png');
-  img5 = loadImage('diddy_l.png');
-  img6 = loadImage('mario_r.png');
-  img7 = loadImage('mario_l.png');
-  img8 = loadImage('luigi_r.png');
-  img9 = loadImage('luigi_l.png');
-  img10 = loadImage('link_r.png');
-  img11 = loadImage('link_l.png');
-  img12 = loadImage('minion_r.png');
-  img13 = loadImage('minion_l.png'); 
+  img2 = loadImage('characters/dk_r.png');
+  img3 = loadImage('characters/dk_l.png');
+  img4 = loadImage('characters/diddy_r.png');
+  img5 = loadImage('characters/diddy_l.png');
+  img6 = loadImage('characters/mario_r.png');
+  img7 = loadImage('characters/mario_l.png');
+  img8 = loadImage('characters/luigi_r.png');
+  img9 = loadImage('characters/luigi_l.png');
+  img10 = loadImage('characters/link_r.png');
+  img11 = loadImage('characters/link_l.png');
+  img12 = loadImage('characters/minion_r.png');
+  img13 = loadImage('characters/minion_l.png'); 
+  jump = loadSound('sounds/jump.mp3');
+  mario = loadSound('sounds/mario.mp3');
+  link = loadSound('sounds/link.mp3');
+  dead = loadSound('sounds/dead.mp3');
 }
 
 let bw = 30;
@@ -109,6 +113,7 @@ function gameplay() {
   gameState = 8;
   lives = 3;
   score = 0;
+  dead.play();
   }
 
   if (frameCount % 100 == 0) {
@@ -155,6 +160,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 51) {
     player = new Player(img7, img6);
+    mario.play();
     gameState = 2
   }
 
@@ -165,6 +171,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 53) {
     player = new Player(img11, img10);
+    link.play();
     gameState = 2
   }
 
@@ -181,8 +188,9 @@ function keyPressed() {
     gameState = 9;
   }
 
-  if (keyCode == 32 && player.y == 630) {
+  if (keyCode == 32 && player.y == 630 && gameState == 2) {
     player.vy -= 7;
+    jump.play();
   }
 }
 
