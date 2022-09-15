@@ -27,6 +27,7 @@ function preload() {
   mario = loadSound('sounds/mario.mp3');
   link = loadSound('sounds/link.mp3');
   dead = loadSound('sounds/dead.mp3');
+  minion = loadSound('sounds/minion.mp3');
 }
 
 let bw = 30;
@@ -145,6 +146,7 @@ function keyPressed() {
   }
 
   if (keyCode == 13) {
+    balls.length = 0;
     gameState = 1;
   }
 
@@ -177,6 +179,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 54) {
     player = new Player(img13, img12);
+    minion.play();
     gameState = 2
   }
 
