@@ -22,9 +22,7 @@ function preload() {
   img10 = loadImage('link_r.png');
   img11 = loadImage('link_l.png');
   img12 = loadImage('minion_r.png');
-  img13 = loadImage('minion_l.png');
-
-  
+  img13 = loadImage('minion_l.png'); 
 }
 
 let bw = 30;
@@ -43,9 +41,6 @@ var direction = "r";
 var player;
 
 function draw() {
-
-  text("gameState" + gameState, 25, 25);
-
   if (gameState == 0) {
     menu();
   }
@@ -56,26 +51,6 @@ function draw() {
 
   if (gameState == 2) {
     gameplay();
-  }
-
-  if (gameState == 3) {
-    diddykong();
-  }
-
-  if (gameState == 4) {
-    mario();
-  }
-
-  if (gameState == 5) {
-    luigi();
-  }
-
-  if (gameState == 6) {
-    link();
-  }
-
-  if (gameState == 7) {
-    minion();
   }
 
   if (gameState == 8) {
@@ -101,8 +76,6 @@ function characters (){
   text("6", 1080, 655);
 }
 
-  
-
 function gameplay() {
   background(jungle);
   text("score:", 25, 45);
@@ -111,14 +84,6 @@ function gameplay() {
   text(lives, 1450, 45);
 
   player.update();
-
-  if (player.x <= -80){
-    player.x = 1499;
-  }
-
-  if (player.x >= 1500){
-    player.x = -79;
-  }
   
   for (let i = 0; i < balls.length; i++) {
     let ball = balls[i];
@@ -154,27 +119,6 @@ function gameplay() {
   balls.forEach((b) => {
     b.draw();
   });
-}
-
-function diddykong() {
-  background("green");
-  text("GAME OVER", 25, 45);
-}
-
-function mario(){
-  background("#ababab");
-}
-
-function luigi(){
-  background("#ababab");
-}
-
-function link(){
-  background("#ababab");
-}
-
-function minion(){
-  background("#ababab");
 }
 
 function gameover(){
@@ -290,6 +234,14 @@ class Player{
     {
       this.direction = "l";
       this.x -= 10;
+    }
+
+    if (this.x <= -80){
+      this.x = 1499;
+    }
+
+    if (this.x >= 1500){
+      this.x = -79;
     }
   }
 }
