@@ -23,14 +23,12 @@ function preload() {
   img11 = loadImage('link_l.png');
   img12 = loadImage('minion_r.png');
   img13 = loadImage('minion_l.png');
+
+  
 }
 
-let px = 725;
-let py = 630;
 let bw = 30;
 let bh = 30;
-let pl = 85;
-let pw = 85;
 let ballx = this.x;
 let bally = this.y;
 
@@ -41,6 +39,8 @@ var highscore = 0;
 var lives = 3;
 var a = 0;
 var balls = [];
+var direction = "r";
+var player;
 
 function draw() {
 
@@ -55,7 +55,7 @@ function draw() {
   }
 
   if (gameState == 2) {
-    donkeykong();
+    gameplay();
   }
 
   if (gameState == 3) {
@@ -101,35 +101,29 @@ function characters (){
   text("6", 1080, 655);
 }
 
-function donkeykong() {
+  
+
+function gameplay() {
   background(jungle);
   text("score:", 25, 45);
   text(score, 250, 45);
   text("lives:", 1220, 45);
   text(lives, 1450, 45);
 
-  if (keyIsDown(LEFT_ARROW)) {
-    px -= 10;
-    image(img3, px, py, pl, pw,);
-  } else if (keyIsDown(RIGHT_ARROW)) {
-    px += 10;
-    image(img2, px, py, pl, pw,);
-  } else {
-    image(img2, px, py, pl, pw,);
+  player.update();
+
+  if (player.x <= -80){
+    player.x = 1499;
   }
 
-  if (px <= -80){
-    px = 1499;
-  }
-
-  if (px >= 1500){
-    px = -79;
+  if (player.x >= 1500){
+    player.x = -79;
   }
   
   for (let i = 0; i < balls.length; i++) {
     let ball = balls[i];
 
-    if(px < ball.x + bw && px + pl > ball.x && py < ball.y + bh && pw + py > ball.y){
+    if(player.x < ball.x + bw && player.x + player.w > ball.x && player.y < ball.y + bh && player.h + player.y > ball.y){
       score += 1;
 //skips collision check for the ball at index i+1 for one frame. Can be resolved by using a foreach statement - Marijn Kneppers
       balls.splice(i, 1);
@@ -206,27 +200,33 @@ function keyPressed() {
   }
 
   if (keyCode == 49) {
+    player = new Player(img3, img2);
     gameState = 2;
   }
 
   if (keyCode == 50) {
-    gameState = 3;
+    player = new Player(img5, img4);
+    gameState = 2
   }
 
   if (keyCode == 51) {
-    gameState = 4;
+    player = new Player(img7, img6);
+    gameState = 2
   }
 
   if (keyCode == 52) {
-    gameState = 5;
+    player = new Player(img9, img8);
+    gameState = 2
   }
 
   if (keyCode == 53) {
-    gameState = 6;
+    player = new Player(img11, img10);
+    gameState = 2
   }
 
   if (keyCode == 54) {
-    gameState = 7;
+    player = new Player(img13, img12);
+    gameState = 2
   }
 
   if (keyCode == 1) {
@@ -247,5 +247,49 @@ class Ball {
   draw() {
     image(img1, this.x, this.y, bw, bh);
     this.y += 3;
+  }
+}
+
+class Player{
+  
+  constructor(left_image, right_image){
+    this.direction = "r";
+    this.x = 725;
+    this.y = 630;
+    this.w = 85;
+    this.h = 85;
+    this.leftImage = left_image;
+    this.rightImage = right_image;
+  }
+
+  update()
+  {
+    this.move();
+    this.draw();
+  }
+
+  draw(){
+    if(this.direction == "r")
+    {
+      image(this.rightImage, this.x, this.y, this.w, this.h);
+    }
+    else if(this.direction == "l")
+    {
+      image(this.leftImage, this.x, this.y, this.w, this.h);
+    }
+  }
+
+  move()
+  {
+    if(keyIsDown(RIGHT_ARROW))
+    {
+      this.direction = "r";
+      this.x += 10;
+    }
+    else if (keyIsDown(LEFT_ARROW))
+    {
+      this.direction = "l";
+      this.x -= 10;
+    }
   }
 }
