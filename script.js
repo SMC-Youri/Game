@@ -1,15 +1,14 @@
 function setup() {
   createCanvas(1500, 800);
-  background(0);
-  jungle = loadImage('background/jungle.jpg');
-  char_sel = loadImage('background/char_sel.jpg');
-  title = loadImage('background/title.jpg');
   textFont("atari", 25);
   textSize(40);
 }
 
 function preload() {
   atari = loadFont('atari.otf');
+  jungle = loadImage('background/jungle.jpg');
+  char_sel = loadImage('background/char_sel.jpg');
+  title = loadImage('background/title.jpg');
   img1 = loadImage('banana.png');
   img2 = loadImage('characters/dk_r.png');
   img3 = loadImage('characters/dk_l.png');
@@ -21,13 +20,24 @@ function preload() {
   img9 = loadImage('characters/luigi_l.png');
   img10 = loadImage('characters/link_r.png');
   img11 = loadImage('characters/link_l.png');
-  img12 = loadImage('characters/minion_r.png');
-  img13 = loadImage('characters/minion_l.png'); 
+  img12 = loadImage('characters/kirby_r.png');
+  img13 = loadImage('characters/kirby_l.png'); 
   jump = loadSound('sounds/jump.mp3');
   mario = loadSound('sounds/mario.mp3');
   link = loadSound('sounds/link.mp3');
   dead = loadSound('sounds/dead.mp3');
-  minion = loadSound('sounds/minion.mp3');
+  kirby = loadSound('sounds/kirby.mp3');
+  dk = loadSound('sounds/dk.mp3');
+  diddy = loadSound('sounds/diddy.mp3');
+  luigi = loadSound('sounds/luigi.mp3');
+  mario_theme = loadSound('themes/mario_theme.mp3');
+  kirby_theme = loadSound('themes/kirby_theme.mp3');
+  dk_theme = loadSound('themes/dk_theme.mp3');
+  luigi_theme = loadSound('themes/luigi_theme.mp3');
+  link_theme = loadSound('themes/link_theme.mp3');
+  diddy_theme = loadSound('themes/diddy_theme.mp3');
+  smash_theme = loadSound('themes/smash_theme.mp3');
+  gamecube = loadSound('sounds/gamecube.mp3');
 }
 
 let bw = 30;
@@ -44,6 +54,7 @@ var a = 0;
 var balls = [];
 var direction = "r";
 var player;
+var song;
 
 function draw() {
   if (gameState == 0) {
@@ -60,10 +71,12 @@ function draw() {
 
   if (gameState == 8) {
     gameover();
+    song.stop();
   }
 
   if (gameState == 9) {
     newhighscore();
+    song.stop();
   }
 }
 
@@ -147,39 +160,62 @@ function keyPressed() {
 
   if (keyCode == 13) {
     balls.length = 0;
+    song = smash_theme;
+    song.loop();
     gameState = 1;
   }
 
   if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2);
+    dk.play();
+    song.stop();
+    song = dk_theme;
+    song.loop();
     gameState = 2;
   }
 
   if (gameState == 1 && keyCode == 50) {
     player = new Player(img5, img4);
+    diddy.play();
+    song.stop();
+    song = diddy_theme;
+    song.loop();
     gameState = 2
   }
 
   if (gameState == 1 && keyCode == 51) {
     player = new Player(img7, img6);
     mario.play();
+    song.stop();
+    song = mario_theme;
+    song.loop();
     gameState = 2
   }
 
   if (gameState == 1 && keyCode == 52) {
     player = new Player(img9, img8);
+    luigi.play();
+    song.stop();
+    song = luigi_theme;
+    song.loop();
     gameState = 2
   }
 
   if (gameState == 1 && keyCode == 53) {
     player = new Player(img11, img10);
     link.play();
+    song.stop();
+    song = link_theme;
+    song.loop();
     gameState = 2
   }
 
   if (gameState == 1 && keyCode == 54) {
     player = new Player(img13, img12);
-    minion.play();
+    kirby.play();
+    song.stop();
+    song = kirby_theme;
+    song.loop();
     gameState = 2
   }
 
