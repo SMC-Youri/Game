@@ -199,32 +199,32 @@ function keyPressed() {
     gameState = 1;
   }
 
-  if (keyCode == 49) {
+  if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2);
     gameState = 2;
   }
 
-  if (keyCode == 50) {
+  if (gameState == 1 && keyCode == 50) {
     player = new Player(img5, img4);
     gameState = 2
   }
 
-  if (keyCode == 51) {
+  if (gameState == 1 && keyCode == 51) {
     player = new Player(img7, img6);
     gameState = 2
   }
 
-  if (keyCode == 52) {
+  if (gameState == 1 && keyCode == 52) {
     player = new Player(img9, img8);
     gameState = 2
   }
 
-  if (keyCode == 53) {
+  if (gameState == 1 && keyCode == 53) {
     player = new Player(img11, img10);
     gameState = 2
   }
 
-  if (keyCode == 54) {
+  if (gameState == 1 && keyCode == 54) {
     player = new Player(img13, img12);
     gameState = 2
   }
