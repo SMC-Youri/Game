@@ -180,6 +180,10 @@ function keyPressed() {
   if (keyCode == 2) {
     gameState = 9;
   }
+
+  if (keyCode == 32 && player.y == 630) {
+    player.vy -= 7;
+  }
 }
 
 class Ball {
@@ -204,6 +208,8 @@ class Player{
     this.h = 85;
     this.leftImage = left_image;
     this.rightImage = right_image;
+    this.vy = 0;
+    this.gravity = 0.2;
   }
 
   update()
@@ -220,6 +226,20 @@ class Player{
     else if(this.direction == "l")
     {
       image(this.leftImage, this.x, this.y, this.w, this.h);
+    }
+
+    this.vy += this.gravity;
+
+    this.y += this.vy;
+
+    if (this.y > 630) {
+      this.vy = 0;
+      this.y = 630;
+    }
+
+    if (this.y < 0) {
+      this.vy = 0;
+      this.y = 0;
     }
   }
 
