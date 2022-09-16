@@ -242,6 +242,7 @@ class Ball {
   
   draw() {
     image(img1, this.x, this.y, bw, bh);
+    this.y += 3;
   }
 }
 
