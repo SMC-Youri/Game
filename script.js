@@ -157,16 +157,10 @@ function gameplay() {
     highscore = score;
     lives = 3;
     score = 0;
-    balls = 0;
-    coconuts = 0;
-    multiballs = 0;
   } else if (lives <= 0 && score <= highscore){
     gameState = 8;
     lives = 3;
     score = 0;
-    balls = 0;
-    coconuts = 0;
-    multiballs = 0;
     dead.play();
   }
 
