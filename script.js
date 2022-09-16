@@ -38,14 +38,13 @@ function preload() {
   link_theme = loadSound('themes/link_theme.mp3');
   diddy_theme = loadSound('themes/diddy_theme.mp3');
   smash_theme = loadSound('themes/smash_theme.mp3');
-  gamecube = loadSound('sounds/gamecube.mp3');
+  splat = loadSound('sounds/splat.mp3');
 }
 
 let bw = 30;
 let bh = 30;
 let ballx = this.x;
 let bally = this.y;
-
 
 var gameState = 0;
 var score = 0;
@@ -56,6 +55,7 @@ var balls = [];
 var direction = "r";
 var player;
 var song;
+var multiballs = [];
 
 function draw() {
   if (gameState == 0) {
@@ -116,6 +116,20 @@ function gameplay() {
   if (ball.y >= 700){
     lives -= 1;
     balls.splice(i, 1);
+    splat.play();
+  } 
+}
+
+  for (let i = 0; i < multiballs.length; i++) {
+    let multiBall = multiballs[i];
+
+    if(player.x < multiBall.x + bw && player.x + player.w > multiBall.x && player.y < multiBall.y + bh && player.h + player.y > multiBall.y){
+      multiballs.splice(i, 1);
+    }
+
+  if (multiBall.y >= 700){
+    multiballs.splice(i, 1);
+    splat.play();
   } 
 }
 
@@ -131,11 +145,19 @@ function gameplay() {
   dead.play();
   }
 
+  if (frameCount % 1000 == 0) {
+    multiballs.push(new multiBall());
+  }
+  
   if (frameCount % 100 == 0) {
-
     balls.push(new Ball());
   }
 
+
+    multiballs.forEach((c) => {
+    c.draw();
+  });
+  
   balls.forEach((b) => {
     b.draw();
   });
@@ -243,6 +265,18 @@ class Ball {
   draw() {
     image(img1, this.x, this.y, bw, bh);
     this.y += 3;
+  }
+}
+
+class multiBall {
+  constructor() {
+    this.x = random(width);
+    this.y = 55;
+  }
+  
+  draw() {
+    image(img14, this.x, this.y, bw, bh);
+    this.y += 5;
   }
 }
 
