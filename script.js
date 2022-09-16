@@ -23,6 +23,7 @@ function preload() {
   img12 = loadImage('characters/kirby_r.png');
   img13 = loadImage('characters/kirby_l.png'); 
   img14 = loadImage('ball/bananas.png');
+  img15 = loadImage('ball/coconut.png');
   jump = loadSound('sounds/jump.mp3');
   mario = loadSound('sounds/mario.mp3');
   link = loadSound('sounds/link.mp3');
@@ -39,6 +40,7 @@ function preload() {
   diddy_theme = loadSound('themes/diddy_theme.mp3');
   smash_theme = loadSound('themes/smash_theme.mp3');
   splat = loadSound('sounds/splat.mp3');
+  coconut = loadSound('sounds/coconut.mp3');
 }
 
 let bw = 30;
@@ -56,6 +58,7 @@ var direction = "r";
 var player;
 var song;
 var multiballs = [];
+var coconuts = [];
 
 function draw() {
   if (gameState == 0) {
@@ -124,12 +127,28 @@ function gameplay() {
     let multiBall = multiballs[i];
 
     if(player.x < multiBall.x + bw && player.x + player.w > multiBall.x && player.y < multiBall.y + bh && player.h + player.y > multiBall.y){
+      score += 5;
       multiballs.splice(i, 1);
     }
 
   if (multiBall.y >= 700){
     multiballs.splice(i, 1);
     splat.play();
+  } 
+}
+
+  for (let i = 0; i < coconuts.length; i++) {
+    let Coconut = coconuts[i];
+
+    if(player.x < Coconut.x + bw && player.x + player.w > Coconut.x && player.y < Coconut.y + bh && player.h + player.y > Coconut.y){
+      lives -= 1;
+      coconuts.splice(i, 1);
+      coconut.play();
+    }
+
+  if (Coconut.y >= 700){
+    coconuts.splice(i, 1);
+    coconut.play();
   } 
 }
 
@@ -153,6 +172,13 @@ function gameplay() {
     balls.push(new Ball());
   }
 
+  if (frameCount % 1500 == 0) {
+    coconuts.push(new Coconut());
+  }
+
+    coconuts.forEach((d) => {
+    d.draw();
+  });
 
     multiballs.forEach((c) => {
     c.draw();
@@ -265,6 +291,26 @@ class Ball {
   draw() {
     image(img1, this.x, this.y, bw, bh);
     this.y += 3;
+
+    if (score >= 25){
+      this.y = this.y + 0.5
+    }
+
+    if (score >= 50){
+      this.y = this.y + 0.5
+    }
+
+    if (score >= 75){
+      this.y = this.y + 0.5
+    }
+
+    if (score >= 100){
+      this.y = this.y + 0.5
+    }
+
+    if (score >= 125){
+      this.y = this.y + 0.5
+    }
   }
 }
 
@@ -277,6 +323,18 @@ class multiBall {
   draw() {
     image(img14, this.x, this.y, bw, bh);
     this.y += 5;
+  }
+}
+
+class Coconut {
+  constructor() {
+    this.x = random(width);
+    this.y = 55;
+  }
+  
+  draw() {
+    image(img15, this.x, this.y, bw, bh);
+    this.y += 4;
   }
 }
 
