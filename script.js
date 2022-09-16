@@ -9,7 +9,7 @@ function preload() {
   jungle = loadImage('background/jungle.jpg');
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
-  img1 = loadImage('banana.png');
+  img1 = loadImage('ball/banana.png');
   img2 = loadImage('characters/dk_r.png');
   img3 = loadImage('characters/dk_l.png');
   img4 = loadImage('characters/diddy_r.png');
@@ -22,6 +22,7 @@ function preload() {
   img11 = loadImage('characters/link_l.png');
   img12 = loadImage('characters/kirby_r.png');
   img13 = loadImage('characters/kirby_l.png'); 
+  img14 = loadImage('ball/bananas.png');
   jump = loadSound('sounds/jump.mp3');
   mario = loadSound('sounds/mario.mp3');
   link = loadSound('sounds/link.mp3');
@@ -102,7 +103,7 @@ function gameplay() {
   text(lives, 1450, 45);
 
   player.update();
-  
+
   for (let i = 0; i < balls.length; i++) {
     let ball = balls[i];
 
@@ -158,7 +159,7 @@ function keyPressed() {
     gameState = 0;
   }
 
-  if (keyCode == 13) {
+  if (gameState != 2 && keyCode == 13) {
     balls.length = 0;
     song = smash_theme;
     song.loop();
@@ -241,12 +242,10 @@ class Ball {
   
   draw() {
     image(img1, this.x, this.y, bw, bh);
-    this.y += 3;
   }
 }
 
 class Player{
-  
   constructor(left_image, right_image){
     this.direction = "r";
     this.x = 725;
@@ -282,11 +281,6 @@ class Player{
     if (this.y > 630) {
       this.vy = 0;
       this.y = 630;
-    }
-
-    if (this.y < 0) {
-      this.vy = 0;
-      this.y = 0;
     }
   }
 
