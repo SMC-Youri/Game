@@ -41,6 +41,8 @@ function preload() {
   smash_theme = loadSound('themes/smash_theme.mp3');
   splat = loadSound('sounds/splat.mp3');
   coconut = loadSound('sounds/coconut.mp3');
+  collect = loadSound('sounds/collect.mp3');
+  collects = loadSound('sounds/collects.mp3');
 }
 
 let bw = 30;
@@ -114,6 +116,7 @@ function gameplay() {
       score += 1;
 //skips collision check for the ball at index i+1 for one frame. Can be resolved by using a foreach statement - Marijn Kneppers
       balls.splice(i, 1);
+      collect.play();
     }
     
   if (ball.y >= 700){
@@ -129,6 +132,7 @@ function gameplay() {
     if(player.x < multiBall.x + bw && player.x + player.w > multiBall.x && player.y < multiBall.y + bh && player.h + player.y > multiBall.y){
       score += 5;
       multiballs.splice(i, 1);
+      collects.play();
     }
 
   if (multiBall.y >= 700){
