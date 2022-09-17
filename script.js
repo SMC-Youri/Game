@@ -209,6 +209,8 @@ function keyPressed() {
 
   if (gameState != 2 && keyCode == 13) {
     balls.length = 0;
+    multiballs.length = 0;
+    coconuts.length = 0;
     song = smash_theme;
     song.loop();
     gameState = 1;
