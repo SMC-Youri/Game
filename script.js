@@ -43,6 +43,7 @@ function preload() {
   coconut = loadSound('sounds/coconut.mp3');
   collect = loadSound('sounds/collect.mp3');
   collects = loadSound('sounds/collects.mp3');
+  menuOk = loadSound('sounds/menuOk.mp3');
 }
 
 let bw = 30;
@@ -215,6 +216,7 @@ function keyPressed() {
     balls.length = 0;
     multiballs.length = 0;
     coconuts.length = 0;
+    menuOk.play();
     song = smash_theme;
     song.loop();
     gameState = 1;
