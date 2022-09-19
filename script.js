@@ -225,6 +225,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2);
     dk.play();
+    menuOk.play();
     song.stop();
     song = dk_theme;
     song.loop();
@@ -234,6 +235,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 50) {
     player = new Player(img5, img4);
     diddy.play();
+    menuOk.play();
     song.stop();
     song = diddy_theme;
     song.loop();
@@ -243,6 +245,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 51) {
     player = new Player(img7, img6);
     mario.play();
+    menuOk.play();
     song.stop();
     song = mario_theme;
     song.loop();
@@ -252,6 +255,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 52) {
     player = new Player(img9, img8);
     luigi.play();
+    menuOk.play();
     song.stop();
     song = luigi_theme;
     song.loop();
@@ -261,6 +265,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 53) {
     player = new Player(img11, img10);
     link.play();
+    menuOk.play();
     song.stop();
     song = link_theme;
     song.loop();
@@ -270,6 +275,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 54) {
     player = new Player(img13, img12);
     kirby.play();
+    menuOk.play();
     song.stop();
     song = kirby_theme;
     song.loop();
