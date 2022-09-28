@@ -251,7 +251,7 @@ function keyPressed() {
     gameState = 0;
   }
 
-  if (gameState == 0 && keyCode == 80) {
+  if (gameState == 0 && keyCode == 49) {
     isTwoPlayer = false;
     balls.length = 0;
     multiballs.length = 0;
@@ -262,7 +262,7 @@ function keyPressed() {
     gameState = 3;
   }
 
-  if (gameState == 0 && keyCode == 79) {
+  if (gameState == 0 && keyCode == 50) {
     isTwoPlayer = true;
     balls.length = 0;
     multiballs.length = 0;
@@ -283,7 +283,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2);
-    player2 = new Player2(img3, img2);
+    player2 = new Player2(img5, img3);
     dk.play();
     menuOk.play();
     song.stop();
@@ -294,7 +294,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 50) {
     player = new Player(img5, img4);
-    player2 = new Player2(img5, img4);
+    player2 = new Player2(img3, img2);
     diddy.play();
     menuOk.play();
     song.stop();
@@ -305,7 +305,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 51) {
     player = new Player(img7, img6);
-    player2 = new Player2(img7, img6);
+    player2 = new Player2(img9, img8);
     mario.play();
     menuOk.play();
     song.stop();
@@ -316,7 +316,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 52) {
     player = new Player(img9, img8);
-    player2 = new Player2(img9, img8);
+    player2 = new Player2(img7, img6);
     luigi.play();
     menuOk.play();
     song.stop();
@@ -327,7 +327,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 53) {
     player = new Player(img11, img10);
-    player2 = new Player2(img11, img10);
+    player2 = new Player2(img13, img12);
     link.play();
     menuOk.play();
     song.stop();
@@ -338,7 +338,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 54) {
     player = new Player(img13, img12);
-    player2 = new Player2(img13, img12);
+    player2 = new Player2(img11, img10);
     kirby.play();
     menuOk.play();
     song.stop();
