@@ -78,6 +78,14 @@ function draw() {
     gameplay();
   }
 
+  if (gameState == 3) {
+    OnePlayer();
+  }
+
+  if (gameState == 4) {
+    TwoPlayer();
+  }
+
   if (gameState == 8) {
     gameover();
     song.stop();
@@ -91,6 +99,14 @@ function draw() {
 
 function menu() {
   background(title);
+}
+
+function OnePlayer() {
+  background(25);
+}
+
+function TwoPlayer() {
+  background(150);
 }
 
 function characters (){
@@ -124,6 +140,12 @@ function gameplay() {
       balls.splice(i, 1);
       collect.play();
     }
+
+    if(player2.x < ball.x + bw && player2.x + player2.w > ball.x && player2.y < ball.y + bh && player2.h + player2.y > ball.y){
+      score += 1;
+      balls.splice(i, 1);
+      collect.play();
+    }
     
   if (ball.y >= 700){
     lives -= 1;
@@ -141,6 +163,12 @@ function gameplay() {
       collects.play();
     }
 
+    if(player2.x < multiBall.x + bw && player2.x + player2.w > multiBall.x && player2.y < multiBall.y + bh && player2.h + player2.y > multiBall.y){
+      score += 5;
+      multiballs.splice(i, 1);
+      collects.play();
+    }
+
   if (multiBall.y >= 700){
     multiballs.splice(i, 1);
     splat.play();
@@ -151,6 +179,12 @@ function gameplay() {
     let Coconut = coconuts[i];
 
     if(player.x < Coconut.x + bw && player.x + player.w > Coconut.x && player.y < Coconut.y + bh && player.h + player.y > Coconut.y){
+      lives -= 1;
+      coconuts.splice(i, 1);
+      coconut.play();
+    }
+
+    if(player2.x < Coconut.x + bw && player2.x + player2.w > Coconut.x && player2.y < Coconut.y + bh && player2.h + player2.y > Coconut.y){
       lives -= 1;
       coconuts.splice(i, 1);
       coconut.play();
@@ -225,7 +259,7 @@ function keyPressed() {
     menuOk.play();
     song = smash_theme;
     song.loop();
-    gameState = 1;
+    gameState = 3;
   }
 
   if (gameState == 0 && keyCode == 79) {
@@ -236,11 +270,15 @@ function keyPressed() {
     menuOk.play();
     song = smash_theme;
     song.loop();
-    gameState = 1;
+    gameState = 4;
   }
 
-  if (gameState != 2 && keyCode == 13) {
+  if (keyCode == 27){
     gameState = 0;
+  }
+  
+  if (gameState != 2 && keyCode == 13) {
+    gameState = 1;
   }
 
   if (gameState == 1 && keyCode == 49) {
