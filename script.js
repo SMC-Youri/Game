@@ -62,6 +62,8 @@ var player;
 var song;
 var multiballs = [];
 var coconuts = [];
+var isTwoPlayer = false;
+
 
 function draw() {
   if (gameState == 0) {
@@ -110,12 +112,15 @@ function gameplay() {
 
   player.update();
 
+  if (isTwoPlayer){
+    player2.update();
+  } 
+  
   for (let i = 0; i < balls.length; i++) {
     let ball = balls[i];
 
     if(player.x < ball.x + bw && player.x + player.w > ball.x && player.y < ball.y + bh && player.h + player.y > ball.y){
       score += 1;
-//skips collision check for the ball at index i+1 for one frame. Can be resolved by using a foreach statement - Marijn Kneppers
       balls.splice(i, 1);
       collect.play();
     }
@@ -168,7 +173,7 @@ function gameplay() {
     score = 0;
     dead.play();
   }
-
+  
   if (frameCount % 1000 == 0) {
     multiballs.push(new multiBall());
   }
@@ -212,7 +217,8 @@ function keyPressed() {
     gameState = 0;
   }
 
-  if (gameState != 2 && keyCode == 13) {
+  if (gameState == 0 && keyCode == 80) {
+    isTwoPlayer = false;
     balls.length = 0;
     multiballs.length = 0;
     coconuts.length = 0;
@@ -222,8 +228,24 @@ function keyPressed() {
     gameState = 1;
   }
 
+  if (gameState == 0 && keyCode == 79) {
+    isTwoPlayer = true;
+    balls.length = 0;
+    multiballs.length = 0;
+    coconuts.length = 0;
+    menuOk.play();
+    song = smash_theme;
+    song.loop();
+    gameState = 1;
+  }
+
+  if (gameState != 2 && keyCode == 13) {
+    gameState = 0;
+  }
+
   if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2);
+    player2 = new Player2(img3, img2);
     dk.play();
     menuOk.play();
     song.stop();
@@ -234,6 +256,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 50) {
     player = new Player(img5, img4);
+    player2 = new Player2(img5, img4);
     diddy.play();
     menuOk.play();
     song.stop();
@@ -244,6 +267,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 51) {
     player = new Player(img7, img6);
+    player2 = new Player2(img7, img6);
     mario.play();
     menuOk.play();
     song.stop();
@@ -254,6 +278,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 52) {
     player = new Player(img9, img8);
+    player2 = new Player2(img9, img8);
     luigi.play();
     menuOk.play();
     song.stop();
@@ -264,6 +289,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 53) {
     player = new Player(img11, img10);
+    player2 = new Player2(img11, img10);
     link.play();
     menuOk.play();
     song.stop();
@@ -274,6 +300,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 54) {
     player = new Player(img13, img12);
+    player2 = new Player2(img13, img12);
     kirby.play();
     menuOk.play();
     song.stop();
@@ -292,6 +319,11 @@ function keyPressed() {
 
   if (keyCode == 32 && player.y == 630 && gameState == 2) {
     player.vy -= 7;
+    jump.play();
+  }
+
+  if (keyCode == 87 && player2.y == 630 && gameState == 2) {
+    player2.vy -= 7;
     jump.play();
   }
 }
@@ -399,6 +431,68 @@ class Player{
       this.x += 10;
     }
     else if (keyIsDown(LEFT_ARROW))
+    {
+      this.direction = "l";
+      this.x -= 10;
+    }
+
+    if (this.x <= -80){
+      this.x = 1499;
+    }
+
+    if (this.x >= 1500){
+      this.x = -79;
+    }
+  }
+}
+
+class Player2{
+  constructor(left_image, right_image){
+    this.direction = "r";
+    this.x = 600;
+    this.y = 630;
+    this.w = 85;
+    this.h = 85;
+    this.leftImage = left_image;
+    this.rightImage = right_image;
+    this.vy = 0;
+    this.gravity = 0.2;
+  }
+
+  update()
+  {
+    this.move();
+    this.draw();
+  }
+
+  draw(){
+    if(this.direction == "r")
+    {
+      image(this.rightImage, this.x, this.y, this.w, this.h);
+    }
+    else if(this.direction == "l")
+    {
+      image(this.leftImage, this.x, this.y, this.w, this.h);
+    }
+
+    this.vy += this.gravity;
+
+    this.y += this.vy;
+
+    if (this.y > 630) {
+      this.vy = 0;
+      this.y = 630;
+    }
+  }
+
+  move()
+  {
+    if(keyIsDown(68))
+    {
+      this.direction = "r";
+      this.x += 10;
+    }
+    else if (keyIsDown(65))
     {
       this.direction = "l";
       this.x -= 10;
