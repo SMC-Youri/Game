@@ -16,16 +16,28 @@ function preload() {
   //CHARACTERS
   img2 = loadImage('characters/dk_r.png');
   img3 = loadImage('characters/dk_l.png');
+  img16 = loadImage('characters/dk_j.png');
+  
   img4 = loadImage('characters/diddy_r.png');
   img5 = loadImage('characters/diddy_l.png');
+  img17 = loadImage('characters/diddy_j.png');
+    
   img6 = loadImage('characters/mario_r.png');
   img7 = loadImage('characters/mario_l.png');
+  img18 = loadImage('characters/mario_j.png');
+  
   img8 = loadImage('characters/luigi_r.png');
   img9 = loadImage('characters/luigi_l.png');
+  img19 = loadImage('characters/luigi_j.png');
+    
   img10 = loadImage('characters/link_r.png');
   img11 = loadImage('characters/link_l.png');
+  img20 = loadImage('characters/link_j.png');
+    
   img12 = loadImage('characters/kirby_r.png');
   img13 = loadImage('characters/kirby_l.png'); 
+  img21 = loadImage('characters/kirby_j.png');
+
 
   //FRUITS
   img1 = loadImage('ball/banana.png');
@@ -36,7 +48,6 @@ function preload() {
   jump = loadSound('sounds/jump.mp3');
   mario = loadSound('sounds/mario.mp3');
   link = loadSound('sounds/link.mp3');
-  dead = loadSound('sounds/dead.mp3');
   kirby = loadSound('sounds/kirby.mp3');
   dk = loadSound('sounds/dk.mp3');
   diddy = loadSound('sounds/diddy.mp3');
@@ -59,6 +70,7 @@ function preload() {
 
   //MENU SOUNDS
   menuOk = loadSound('sounds/menuOk.mp3');
+  dead = loadSound('sounds/dead.mp3');
 }
 
 let bw = 30;
@@ -297,7 +309,7 @@ function keyPressed() {
   }
 
   if (gameState == 1 && keyCode == 49) {
-    player = new Player(img3, img2);
+    player = new Player(img3, img2, img1);
     player2 = new Player2(img5, img3);
     dk.play();
     menuOk.play();
@@ -438,7 +450,7 @@ class Coconut {
 }
 
 class Player{
-  constructor(left_image, right_image){
+  constructor(left_image, right_image, jump_image){
     this.direction = "r";
     this.x = 725;
     this.y = 630;
@@ -446,6 +458,7 @@ class Player{
     this.h = 85;
     this.leftImage = left_image;
     this.rightImage = right_image;
+    this.jumpImage = jump_image;
     this.vy = 0;
     this.gravity = 0.2;
   }
@@ -464,7 +477,8 @@ class Player{
     else if(this.direction == "l")
     {
       image(this.leftImage, this.x, this.y, this.w, this.h);
-    }
+    } else if(this.direction == "j")
+      image(this.jumpImage, this.x, this.y, this.w, this.h);
 
     this.vy += this.gravity;
 
@@ -495,6 +509,10 @@ class Player{
 
     if (this.x >= 1500){
       this.x = -79;
+    }
+
+    if (this.y != 630){
+      this.direction = "j"
     }
   }
 }
