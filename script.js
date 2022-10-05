@@ -5,11 +5,15 @@ function setup() {
 }
 
 function preload() {
+  //FONT
   atari = loadFont('atari.otf');
+
+  //BACKGROUND
   jungle = loadImage('background/jungle.jpg');
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
-  img1 = loadImage('ball/banana.png');
+
+  //CHARACTERS
   img2 = loadImage('characters/dk_r.png');
   img3 = loadImage('characters/dk_l.png');
   img4 = loadImage('characters/diddy_r.png');
@@ -22,8 +26,13 @@ function preload() {
   img11 = loadImage('characters/link_l.png');
   img12 = loadImage('characters/kirby_r.png');
   img13 = loadImage('characters/kirby_l.png'); 
+
+  //FRUITS
+  img1 = loadImage('ball/banana.png');
   img14 = loadImage('ball/bananas.png');
   img15 = loadImage('ball/coconut.png');
+
+  //CHARACTER SOUNDS
   jump = loadSound('sounds/jump.mp3');
   mario = loadSound('sounds/mario.mp3');
   link = loadSound('sounds/link.mp3');
@@ -32,6 +41,8 @@ function preload() {
   dk = loadSound('sounds/dk.mp3');
   diddy = loadSound('sounds/diddy.mp3');
   luigi = loadSound('sounds/luigi.mp3');
+
+  //BACKGROUND THEMES
   mario_theme = loadSound('themes/mario_theme.mp3');
   kirby_theme = loadSound('themes/kirby_theme.mp3');
   dk_theme = loadSound('themes/dk_theme.mp3');
@@ -39,10 +50,14 @@ function preload() {
   link_theme = loadSound('themes/link_theme.mp3');
   diddy_theme = loadSound('themes/diddy_theme.mp3');
   smash_theme = loadSound('themes/smash_theme.mp3');
+
+  //FRUIT SOUNDS
   splat = loadSound('sounds/splat.mp3');
   coconut = loadSound('sounds/coconut.mp3');
   collect = loadSound('sounds/collect.mp3');
   collects = loadSound('sounds/collects.mp3');
+
+  //MENU SOUNDS
   menuOk = loadSound('sounds/menuOk.mp3');
 }
 
