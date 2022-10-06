@@ -13,7 +13,7 @@ function preload() {
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
 
-  //CHARACTERS
+ //CHARACTERS
   img2 = loadImage('characters/dk_r.png');
   img3 = loadImage('characters/dk_l.png');
   img16 = loadImage('characters/dk_j.png');
@@ -37,6 +37,9 @@ function preload() {
   img12 = loadImage('characters/kirby_r.png');
   img13 = loadImage('characters/kirby_l.png'); 
   img21 = loadImage('characters/kirby_j.png');
+  
+  
+ 
 
 
   //FRUITS
@@ -309,7 +312,7 @@ function keyPressed() {
   }
 
   if (gameState == 1 && keyCode == 49) {
-    player = new Player(img3, img2, img1);
+    player = new Player(img3, img2, img16);
     player2 = new Player2(img5, img3);
     dk.play();
     menuOk.play();
