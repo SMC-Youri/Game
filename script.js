@@ -21,23 +21,28 @@ function preload() {
   
   img4 = loadImage('characters/diddy_r.png');
   img5 = loadImage('characters/diddy_l.png');
-  //img17 = loadImage('characters/diddy_j.png');
+  //img17 = loadImage('characters/diddy_j_r.png');
+  //img23 = loadImage('characters/diddy_j_l.png');
     
   img6 = loadImage('characters/mario_r.png');
   img7 = loadImage('characters/mario_l.png');
-  //img18 = loadImage('characters/mario_j.png');
+  img18 = loadImage('characters/mario_j_r.png');
+  img24 = loadImage('characters/mario_j_l.png');
   
   img8 = loadImage('characters/luigi_r.png');
   img9 = loadImage('characters/luigi_l.png');
-  //img19 = loadImage('characters/luigi_j.png');
+  img19 = loadImage('characters/luigi_j_r.png');
+  img25 = loadImage('characters/luigi_j_l.png');
     
   img10 = loadImage('characters/link_r.png');
   img11 = loadImage('characters/link_l.png');
-  //img20 = loadImage('characters/link_j.png');
+  img20 = loadImage('characters/link_j_r.png');
+  img26 = loadImage('characters/link_j_l.png');
     
   img12 = loadImage('characters/kirby_r.png');
   img13 = loadImage('characters/kirby_l.png'); 
-  //img21 = loadImage('characters/kirby_j.png');
+  img21 = loadImage('characters/kirby_j_r.png');
+  img27 = loadImage('characters/kirby_j_l.png');
   
 
 
@@ -333,7 +338,7 @@ function keyPressed() {
   }
 
   if (gameState == 1 && keyCode == 51) {
-    player = new Player(img7, img6);
+    player = new Player(img7, img6, img18, img24);
     player2 = new Player2(img9, img8);
     mario.play();
     menuOk.play();
@@ -344,7 +349,7 @@ function keyPressed() {
   }
 
   if (gameState == 1 && keyCode == 52) {
-    player = new Player(img9, img8);
+    player = new Player(img9, img8, img19, img25);
     player2 = new Player2(img7, img6);
     luigi.play();
     menuOk.play();
@@ -355,7 +360,7 @@ function keyPressed() {
   }
 
   if (gameState == 1 && keyCode == 53) {
-    player = new Player(img11, img10);
+    player = new Player(img11, img10, img20, img26);
     player2 = new Player2(img13, img12);
     link.play();
     menuOk.play();
@@ -366,7 +371,7 @@ function keyPressed() {
   }
 
   if (gameState == 1 && keyCode == 54) {
-    player = new Player(img13, img12);
+    player = new Player(img13, img12, img21, img27);
     player2 = new Player2(img11, img10);
     kirby.play();
     menuOk.play();
@@ -384,15 +389,8 @@ function keyPressed() {
     gameState = 9;
   }
 
-  if (keyCode == 32 && player.y == 630 && gameState == 2 && player.direction == "r") {
+  if (keyCode == 32 && player.y == 630 && gameState == 2) {
     player.vy -= 7;
-    player.direction = "j_r";
-    jump.play();
-  }
-
-  if (keyCode == 32 && player.y == 630 && gameState == 2 && player.direction == "l") {
-    player.vy -= 7;
-    player.direction = "j_l";
     jump.play();
   }
 
@@ -520,6 +518,14 @@ class Player{
       this.x -= 10;
     }
 
+    if (this.y >= 629 && this.direction == "j_l"){
+      this.direction = "l";
+    }
+
+    if (this.y >= 629 && this.direction == "j_r"){
+      this.direction = "r"
+    }
+
     if (this.x <= -80){
       this.x = 1499;
     }
@@ -528,13 +534,20 @@ class Player{
       this.x = -79;
     }
 
-    if (this.y != 630 && keyIsDown(RIGHT_ARROW) ){
+    if (this.y != 630 && keyIsDown(RIGHT_ARROW)){
       this.direction = "j_r"
     }
-     if (this.y != 630 && keyIsDown(LEFT_ARROW) ){
+     if (this.y != 630 && keyIsDown(LEFT_ARROW)){
       this.direction = "j_l"
     }
 
+    if (keyIsDown(32) && player.y <= 629 && gameState == 2 && player.direction == "l") {
+    player.direction = "j_l";
+  }
+
+    if (keyIsDown(32) && player.y <= 629 && gameState == 2 && player.direction == "r") {
+    player.direction = "j_r";
+  }
 
   }
 }
