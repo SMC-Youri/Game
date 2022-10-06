@@ -22,8 +22,8 @@ function preload() {
   
   img4 = loadImage('characters/diddy_r.png');
   img5 = loadImage('characters/diddy_l.png');
-  //img17 = loadImage('characters/diddy_j_r.png');
-  //img23 = loadImage('characters/diddy_j_l.png');
+  img17 = loadImage('characters/diddy_j_r.png');
+  img23 = loadImage('characters/diddy_j_l.png');
     
   img6 = loadImage('characters/mario_r.png');
   img7 = loadImage('characters/mario_l.png');
@@ -333,7 +333,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2, img16, img22);
-    player2 = new Player2(img5, img3);
+    player2 = new Player2(img5, img3, img17, img23);
     dk.play();
     menuOk.play();
     song.stop();
@@ -343,7 +343,7 @@ function keyPressed() {
   }
 
   if (gameState == 1 && keyCode == 50) {
-    player = new Player(img5, img4);
+    player = new Player(img5, img4, img17, img23);
     player2 = new Player2(img3, img2, img16, img22);
     diddy.play();
     menuOk.play();
