@@ -44,13 +44,14 @@ function preload() {
   img13 = loadImage('characters/kirby_l.png'); 
   img21 = loadImage('characters/kirby_j_r.png');
   img27 = loadImage('characters/kirby_j_l.png');
-  
 
-
-  //FRUITS
+  //OBJECTS
   img1 = loadImage('ball/banana.png');
   img14 = loadImage('ball/bananas.png');
   img15 = loadImage('ball/coconut.png');
+  coin = loadImage('ball/coin.png');
+  mushroom = loadImage('ball/mushroom.png');
+  shell = loadImage('ball/shell.png');
 
   //CHARACTER SOUNDS
   jump = loadSound('sounds/jump.mp3');
@@ -70,8 +71,8 @@ function preload() {
   diddy_theme = loadSound('themes/diddy_theme.mp3');
   smash_theme = loadSound('themes/smash_theme.mp3');
 
-  //FRUIT SOUNDS
-  splat = loadSound('sounds/splat.mp3');
+  //OBJECT SOUNDS
+  splat = loadSound('sounds/fail.mp3');
   coconut = loadSound('sounds/coconut.mp3');
   collect = loadSound('sounds/collect.mp3');
   collects = loadSound('sounds/collects.mp3');
@@ -130,6 +131,20 @@ function draw() {
     newhighscore();
     song.stop();
   }
+
+  if (highscore >= 0){
+    gameplay_background = jungle;
+    fall_ball = img1;
+    fall_balls = img14;
+    fall_enem = img15;
+  }
+  
+  if (highscore >= 25){
+    gameplay_background = mario_bros;
+    fall_ball = coin;
+    fall_balls = mushroom;
+    fall_enem = shell;
+  }
 }
 
 function menu() {
@@ -155,7 +170,7 @@ function characters (){
 }
 
 function gameplay() {
-  background(jungle);
+  background(gameplay_background);
   text("score:", 25, 45);
   text(score, 250, 45);
   text("lives:", 1220, 45);
@@ -408,7 +423,7 @@ class Ball {
   }
   
   draw() {
-    image(img1, this.x, this.y, bw, bh);
+    image(fall_ball, this.x, this.y, bw, bh);
     this.y += 3;
 
     if (score >= 25){
@@ -440,7 +455,7 @@ class multiBall {
   }
   
   draw() {
-    image(img14, this.x, this.y, bw, bh);
+    image(fall_balls, this.x, this.y, bw, bh);
     this.y += 5;
   }
 }
@@ -452,7 +467,7 @@ class Coconut {
   }
   
   draw() {
-    image(img15, this.x, this.y, bw, bh);
+    image(fall_enem, this.x, this.y, bw, bh);
     this.y += 4;
   }
 }
