@@ -328,7 +328,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 50) {
     player = new Player(img5, img4);
-    player2 = new Player2(img3, img2);
+    player2 = new Player2(img3, img2, img16, img22);
     diddy.play();
     menuOk.play();
     song.stop();
@@ -339,7 +339,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 51) {
     player = new Player(img7, img6, img18, img24);
-    player2 = new Player2(img9, img8);
+    player2 = new Player2(img9, img8, img19, img25);
     mario.play();
     menuOk.play();
     song.stop();
@@ -350,7 +350,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 52) {
     player = new Player(img9, img8, img19, img25);
-    player2 = new Player2(img7, img6);
+    player2 = new Player2(img7, img6, img18, img24);
     luigi.play();
     menuOk.play();
     song.stop();
@@ -361,7 +361,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 53) {
     player = new Player(img11, img10, img20, img26);
-    player2 = new Player2(img13, img12);
+    player2 = new Player2(img13, img12, img21, img27);
     link.play();
     menuOk.play();
     song.stop();
@@ -372,7 +372,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 54) {
     player = new Player(img13, img12, img21, img27);
-    player2 = new Player2(img11, img10);
+    player2 = new Player2(img11, img10, img20, img26);
     kirby.play();
     menuOk.play();
     song.stop();
@@ -517,7 +517,7 @@ class Player{
       this.direction = "l";
       this.x -= 10;
     }
-
+    
     if (this.y >= 629 && this.direction == "j_l"){
       this.direction = "l";
     }
@@ -537,30 +537,32 @@ class Player{
     if (this.y != 630 && keyIsDown(RIGHT_ARROW)){
       this.direction = "j_r"
     }
-     if (this.y != 630 && keyIsDown(LEFT_ARROW)){
+      
+    if (this.y != 630 && keyIsDown(LEFT_ARROW)){
       this.direction = "j_l"
     }
 
     if (keyIsDown(32) && player.y <= 629 && gameState == 2 && player.direction == "l") {
-    player.direction = "j_l";
-  }
+      player.direction = "j_l";
+    }
 
     if (keyIsDown(32) && player.y <= 629 && gameState == 2 && player.direction == "r") {
-    player.direction = "j_r";
-  }
-
+      player.direction = "j_r";
+    }
   }
 }
 
 class Player2{
-  constructor(left_image, right_image){
+  constructor(left_image, right_image, jump_image_right, jump_image_left){
     this.direction = "r";
-    this.x = 600;
+    this.x = 625;
     this.y = 630;
     this.w = 85;
     this.h = 85;
     this.leftImage = left_image;
     this.rightImage = right_image;
+    this.jumpImageright = jump_image_right;
+    this.jumpImageleft = jump_image_left;
     this.vy = 0;
     this.gravity = 0.2;
   }
@@ -579,6 +581,14 @@ class Player2{
     else if(this.direction == "l")
     {
       image(this.leftImage, this.x, this.y, this.w, this.h);
+    } 
+    else if(this.direction == "j_r")
+    {
+      image(this.jumpImageright, this.x, this.y, this.w, this.h);
+    } 
+    else if (this.direction == "j_l") 
+    {
+      image(this.jumpImageleft, this.x, this.y, this.w, this.h);
     }
 
     this.vy += this.gravity;
@@ -591,9 +601,9 @@ class Player2{
     }
   }
 
-  move()
+move()
   {
-    if(keyIsDown(68))
+     if(keyIsDown(68))
     {
       this.direction = "r";
       this.x += 10;
@@ -603,6 +613,14 @@ class Player2{
       this.direction = "l";
       this.x -= 10;
     }
+    
+    if (this.y >= 629 && this.direction == "j_l"){
+      this.direction = "l";
+    }
+
+    if (this.y >= 629 && this.direction == "j_r"){
+      this.direction = "r"
+    }
 
     if (this.x <= -80){
       this.x = 1499;
@@ -610,6 +628,22 @@ class Player2{
 
     if (this.x >= 1500){
       this.x = -79;
+    }
+
+    if (this.y != 630 && keyIsDown(68)){
+      this.direction = "j_r"
+    }
+      
+    if (this.y != 630 && keyIsDown(65)){
+      this.direction = "j_l"
+    }
+
+    if (keyIsDown(87) && player2.y <= 629 && gameState == 2 && player2.direction == "l") {
+      player2.direction = "j_l";
+    }
+
+    if (keyIsDown(87) && player2.y <= 629 && gameState == 2 && player2.direction == "r") {
+      player2.direction = "j_r";
     }
   }
 }
