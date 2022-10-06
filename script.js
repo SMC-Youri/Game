@@ -11,6 +11,7 @@ function preload() {
   //BACKGROUND
   jungle = loadImage('background/jungle.jpg');
   mario_bros = loadImage('background/mario_bros.jpg');
+  luigi_mansion = loadImage('background/luigi_mansion.jpg');
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
 
@@ -52,6 +53,8 @@ function preload() {
   coin = loadImage('ball/coin.png');
   mushroom = loadImage('ball/mushroom.png');
   shell = loadImage('ball/shell.png');
+  ghost = loadImage('ball/ghost.png');
+  dark_moon = loadImage('ball/dark_moon.png');
 
   //CHARACTER SOUNDS
   jump = loadSound('sounds/jump.mp3');
@@ -139,11 +142,18 @@ function draw() {
     fall_enem = img15;
   }
   
-  if (highscore >= 25){
+  if (highscore >= 25 && highscore <= 50){
     gameplay_background = mario_bros;
     fall_ball = coin;
     fall_balls = mushroom;
     fall_enem = shell;
+  }
+
+  if (highscore >= 50){
+    gameplay_background = luigi_mansion;
+    fall_ball = coin;
+    fall_balls = dark_moon;
+    fall_enem = ghost;
   }
 }
 
