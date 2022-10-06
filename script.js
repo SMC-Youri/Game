@@ -10,6 +10,7 @@ function preload() {
 
   //BACKGROUND
   jungle = loadImage('background/jungle.jpg');
+  mario_bros = loadImage('background/mario_bros.jpg');
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
 
