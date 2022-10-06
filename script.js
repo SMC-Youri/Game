@@ -16,30 +16,29 @@ function preload() {
  //CHARACTERS
   img2 = loadImage('characters/dk_r.png');
   img3 = loadImage('characters/dk_l.png');
-  img16 = loadImage('characters/dk_j.png');
+  img16 = loadImage('characters/dk_j_r.png');
+  img22 = loadImage('characters/dk_j_l.png');
   
   img4 = loadImage('characters/diddy_r.png');
   img5 = loadImage('characters/diddy_l.png');
-  img17 = loadImage('characters/diddy_j.png');
+  //img17 = loadImage('characters/diddy_j.png');
     
   img6 = loadImage('characters/mario_r.png');
   img7 = loadImage('characters/mario_l.png');
-  img18 = loadImage('characters/mario_j.png');
+  //img18 = loadImage('characters/mario_j.png');
   
   img8 = loadImage('characters/luigi_r.png');
   img9 = loadImage('characters/luigi_l.png');
-  img19 = loadImage('characters/luigi_j.png');
+  //img19 = loadImage('characters/luigi_j.png');
     
   img10 = loadImage('characters/link_r.png');
   img11 = loadImage('characters/link_l.png');
-  img20 = loadImage('characters/link_j.png');
+  //img20 = loadImage('characters/link_j.png');
     
   img12 = loadImage('characters/kirby_r.png');
   img13 = loadImage('characters/kirby_l.png'); 
-  img21 = loadImage('characters/kirby_j.png');
+  //img21 = loadImage('characters/kirby_j.png');
   
-  
- 
 
 
   //FRUITS
@@ -312,7 +311,7 @@ function keyPressed() {
   }
 
   if (gameState == 1 && keyCode == 49) {
-    player = new Player(img3, img2, img16);
+    player = new Player(img3, img2, img16, img22);
     player2 = new Player2(img5, img3);
     dk.play();
     menuOk.play();
@@ -385,8 +384,15 @@ function keyPressed() {
     gameState = 9;
   }
 
-  if (keyCode == 32 && player.y == 630 && gameState == 2) {
+  if (keyCode == 32 && player.y == 630 && gameState == 2 && player.direction == "r") {
     player.vy -= 7;
+    player.direction = "j_r";
+    jump.play();
+  }
+
+  if (keyCode == 32 && player.y == 630 && gameState == 2 && player.direction == "l") {
+    player.vy -= 7;
+    player.direction = "j_l";
     jump.play();
   }
 
@@ -453,7 +459,7 @@ class Coconut {
 }
 
 class Player{
-  constructor(left_image, right_image, jump_image){
+  constructor(left_image, right_image, jump_image_right, jump_image_left){
     this.direction = "r";
     this.x = 725;
     this.y = 630;
@@ -461,7 +467,8 @@ class Player{
     this.h = 85;
     this.leftImage = left_image;
     this.rightImage = right_image;
-    this.jumpImage = jump_image;
+    this.jumpImageright = jump_image_right;
+    this.jumpImageleft = jump_image_left;
     this.vy = 0;
     this.gravity = 0.2;
   }
@@ -480,8 +487,15 @@ class Player{
     else if(this.direction == "l")
     {
       image(this.leftImage, this.x, this.y, this.w, this.h);
-    } else if(this.direction == "j")
-      image(this.jumpImage, this.x, this.y, this.w, this.h);
+    } 
+    else if(this.direction == "j_r")
+    {
+      image(this.jumpImageright, this.x, this.y, this.w, this.h);
+    } 
+    else if (this.direction == "j_l") 
+    {
+      image(this.jumpImageleft, this.x, this.y, this.w, this.h);
+    }
 
     this.vy += this.gravity;
 
@@ -495,7 +509,7 @@ class Player{
 
   move()
   {
-    if(keyIsDown(RIGHT_ARROW))
+     if(keyIsDown(RIGHT_ARROW))
     {
       this.direction = "r";
       this.x += 10;
@@ -514,9 +528,14 @@ class Player{
       this.x = -79;
     }
 
-    if (this.y != 630){
-      this.direction = "j"
+    if (this.y != 630 && keyIsDown(RIGHT_ARROW) ){
+      this.direction = "j_r"
     }
+     if (this.y != 630 && keyIsDown(LEFT_ARROW) ){
+      this.direction = "j_l"
+    }
+
+
   }
 }
 
