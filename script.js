@@ -201,7 +201,7 @@ function gameplay() {
       collect.play();
     }
 
-    if(player2.x < ball.x + bw && player2.x + player2.w > ball.x && player2.y < ball.y + bh && player2.h + player2.y > ball.y){
+    if(isTwoPlayer && player2.x < ball.x + bw && player2.x + player2.w > ball.x && player2.y < ball.y + bh && player2.h + player2.y > ball.y){
       score += 1;
       balls.splice(i, 1);
       collect.play();
@@ -343,7 +343,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2, img16, img22);
-    player2 = new Player2(img5, img3, img17, img23);
+    player2 = new Player2(img4, img3, img17, img23);
     dk.play();
     menuOk.play();
     song.stop();
