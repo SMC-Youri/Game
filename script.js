@@ -84,7 +84,6 @@ function preload() {
   menuOk = loadSound('sounds/menuOk.mp3');
   dead = loadSound('sounds/dead.mp3');
 }
-
 let bw = 30;
 let bh = 30;
 let ballx = this.x;
@@ -102,9 +101,12 @@ var song;
 var multiballs = [];
 var coconuts = [];
 var isTwoPlayer = false;
+var i = 0;
 
 
 function draw() {
+  i = i + 1
+  
   if (gameState == 0) {
     menu();
   }
@@ -122,7 +124,7 @@ function draw() {
   }
 
   if (gameState == 4) {
-    TwoPlayer();
+    newLevel();
   }
 
   if (gameState == 8) {
@@ -159,14 +161,28 @@ function draw() {
 
 function menu() {
   background(title);
+  fill('white');
+  text('NINTENDO ALL-STARS', 400, 200);
+  text('1 PLAYER GAME', 515, 550);
+  text('2 PLAYER GAME', 515, 650);
 }
 
 function OnePlayer() {
-  background(25);
+  background(0);
+
+  if (i % 80 === 0){
+  	fill(0);
+   text('PRESS ENTER TO START', 375, 450);
+  } else {
+    fill(255);
+    text('PRESS ENTER TO START', 375, 450);
+  }
 }
 
-function TwoPlayer() {
-  background(150);
+function newLevel() {
+  background(0);
+  fill('white');
+  text('PRESS ENTER TO START', 350, 400)
 }
 
 function characters (){
@@ -313,24 +329,14 @@ function keyPressed() {
 
   if (gameState == 0 && keyCode == 49) {
     isTwoPlayer = false;
-    balls.length = 0;
-    multiballs.length = 0;
-    coconuts.length = 0;
     menuOk.play();
-    song = smash_theme;
-    song.loop();
     gameState = 3;
   }
 
   if (gameState == 0 && keyCode == 50) {
     isTwoPlayer = true;
-    balls.length = 0;
-    multiballs.length = 0;
-    coconuts.length = 0;
     menuOk.play();
-    song = smash_theme;
-    song.loop();
-    gameState = 4;
+    gameState = 3;
   }
 
   if (keyCode == 27){
@@ -339,6 +345,12 @@ function keyPressed() {
   
   if (gameState != 2 && keyCode == 13) {
     gameState = 1;
+    balls.length = 0;
+    multiballs.length = 0;
+    coconuts.length = 0;
+    menuOk.play();
+    song = smash_theme;
+    song.loop();
   }
 
   if (gameState == 1 && keyCode == 49) {
