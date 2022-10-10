@@ -83,6 +83,7 @@ function preload() {
   //MENU SOUNDS
   menuOk = loadSound('sounds/menuOk.mp3');
   dead = loadSound('sounds/dead.mp3');
+  victory = loadSound('sounds/victory.mp3');
 }
 let bw = 30;
 let bh = 30;
@@ -137,21 +138,33 @@ function draw() {
     song.stop();
   }
 
-  if (highscore >= 0){
+  if (score >= 25 && score <= 30 && gameplay_background == jungle) {
+    gameState = 4;
+    victory.play();
+    song.stop();
+  }
+
+  if (score >= 50 && score <= 55 && gameplay_background == mario_bros) {
+    gameState = 4;
+    victory.play();
+    song.stop();
+  }
+
+  if (score >= 0){
     gameplay_background = jungle;
     fall_ball = img1;
     fall_balls = img14;
     fall_enem = img15;
   }
   
-  if (highscore >= 25 && highscore <= 50){
+  if (score >= 25 && score <= 50){
     gameplay_background = mario_bros;
     fall_ball = coin;
     fall_balls = mushroom;
     fall_enem = shell;
   }
 
-  if (highscore >= 50){
+  if (score >= 50){
     gameplay_background = luigi_mansion;
     fall_ball = coin;
     fall_balls = dark_moon;
@@ -181,8 +194,16 @@ function OnePlayer() {
 
 function newLevel() {
   background(0);
-  fill('white');
-  text('NEW LEVEL UNLOCKED', 350, 400)
+
+  if (i % 80 === 0){
+  	fill(0);
+   text('PRESS ENTER TO CONTINUE', 325, 500);
+   text('NEW LEVEL UNLOCKED', 430, 350)
+  } else {
+    fill(255);
+    text('PRESS ENTER TO CONTINUE', 325, 500);
+    text('NEW LEVEL UNLOCKED', 430, 350)
+  }
 }
 
 function characters (){
@@ -341,6 +362,19 @@ function keyPressed() {
 
   if (keyCode == 27){
     gameState = 0;
+    balls.length = 0;
+    multiballs.length = 0;
+    coconuts.length = 0;
+    menuOk.play();
+  }
+
+  if (gameState == 4 && keyCode == 13){
+    gameState = 2;
+    balls.length = 0;
+    multiballs.length = 0;
+    coconuts.length = 0;
+    menuOk.play();
+    song.loop();
   }
   
   if (gameState != 2 && keyCode == 13) {
