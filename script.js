@@ -182,7 +182,7 @@ function OnePlayer() {
 function newLevel() {
   background(0);
   fill('white');
-  text('PRESS ENTER TO START', 350, 400)
+  text('NEW LEVEL UNLOCKED', 350, 400)
 }
 
 function characters (){
@@ -239,7 +239,7 @@ function gameplay() {
       collects.play();
     }
 
-    if(player2.x < multiBall.x + bw && player2.x + player2.w > multiBall.x && player2.y < multiBall.y + bh && player2.h + player2.y > multiBall.y){
+    if(isTwoPlayer && player2.x < multiBall.x + bw && player2.x + player2.w > multiBall.x && player2.y < multiBall.y + bh && player2.h + player2.y > multiBall.y){
       score += 5;
       multiballs.splice(i, 1);
       collects.play();
@@ -260,7 +260,7 @@ function gameplay() {
       coconut.play();
     }
 
-    if(player2.x < Coconut.x + bw && player2.x + player2.w > Coconut.x && player2.y < Coconut.y + bh && player2.h + player2.y > Coconut.y){
+    if(isTwoPlayer && player2.x < Coconut.x + bw && player2.x + player2.w > Coconut.x && player2.y < Coconut.y + bh && player2.h + player2.y > Coconut.y){
       lives -= 1;
       coconuts.splice(i, 1);
       coconut.play();
