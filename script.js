@@ -84,6 +84,10 @@ function preload() {
   menuOk = loadSound('sounds/menuOk.mp3');
   dead = loadSound('sounds/dead.mp3');
   victory = loadSound('sounds/victory.mp3');
+
+  //GAMECUBE
+  gamecube = loadSound('sounds/gamecube.mp3');
+  gamecube_gif = loadImage('gamecube.gif');
 }
 let bw = 30;
 let bh = 30;
@@ -126,6 +130,10 @@ function draw() {
 
   if (gameState == 4) {
     newLevel();
+  }
+
+  if (gameState == 5){
+    cube_anim();
   }
 
   if (gameState == 8) {
@@ -204,6 +212,13 @@ function newLevel() {
     text('PRESS ENTER TO CONTINUE', 325, 500);
     text('NEW LEVEL UNLOCKED', 430, 350)
   }
+}
+
+function cube_anim() {
+  background(10);
+  image(gamecube_gif, 530, 275);
+  
+  setInterval(function(){if(gameState == 5){gameState = 3}}, 5800)
 }
 
 function characters (){
@@ -343,21 +358,18 @@ function newhighscore(){
 }
 
 function keyPressed() {
-
-  if (keyCode == 0) {
-    gameState = 0;
-  }
-
   if (gameState == 0 && keyCode == 49) {
     isTwoPlayer = false;
     menuOk.play();
-    gameState = 3;
+    gameState = 5;
+    gamecube.play();
   }
 
   if (gameState == 0 && keyCode == 50) {
     isTwoPlayer = true;
     menuOk.play();
-    gameState = 3;
+    gameState = 5;
+    gamecube.play();
   }
 
   if (keyCode == 27){
