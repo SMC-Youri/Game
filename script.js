@@ -12,6 +12,7 @@ function preload() {
   jungle = loadImage('background/jungle.jpg');
   mario_bros = loadImage('background/mario_bros.jpg');
   luigi_mansion = loadImage('background/luigi_mansion.jpg');
+  eldin_bridge = loadImage('background/legend_of_zelda.jpg');
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
 
@@ -55,6 +56,8 @@ function preload() {
   shell = loadImage('ball/shell.png');
   ghost = loadImage('ball/ghost.png');
   dark_moon = loadImage('ball/dark_moon.png');
+  gem = loadImage('ball/gem.png');
+  bomb = loadImage('ball/bomb.png');
 
   //CHARACTER SOUNDS
   jump = loadSound('sounds/jump.mp3');
@@ -158,6 +161,12 @@ function draw() {
     song.stop();
   }
 
+  if (score >= 75 && score <= 80 && gameplay_background == luigi_mansion) {
+    gameState = 4;
+    victory.play();
+    song.stop();
+  }
+
   if (score >= 0){
     gameplay_background = jungle;
     fall_ball = img1;
@@ -172,12 +181,19 @@ function draw() {
     fall_enem = shell;
   }
 
-  if (score >= 50){
+  if (score >= 50 && score <= 75){
     gameplay_background = luigi_mansion;
     fall_ball = coin;
     fall_balls = dark_moon;
     fall_enem = ghost;
   }
+
+  if (score >= 75){
+      gameplay_background = eldin_bridge;
+      fall_ball = gem;
+      fall_balls = mushroom;
+      fall_enem = bomb;
+    }
 }
 
 function menu() {
@@ -218,7 +234,7 @@ function cube_anim() {
   background(10);
   image(gamecube_gif, 530, 275);
   
-  setInterval(function(){if(gameState == 5){gameState = 3}}, 5800)
+  setInterval(function(){if(gameState == 5){gameState = 3}}, 5500)
 }
 
 function characters (){
