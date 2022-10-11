@@ -13,6 +13,7 @@ function preload() {
   mario_bros = loadImage('background/mario_bros.jpg');
   luigi_mansion = loadImage('background/luigi_mansion.jpg');
   eldin_bridge = loadImage('background/legend_of_zelda.jpg');
+  donkey_kong_original = loadImage('background/dk.jpg');
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
 
@@ -58,6 +59,9 @@ function preload() {
   dark_moon = loadImage('ball/dark_moon.png');
   gem = loadImage('ball/gem.png');
   bomb = loadImage('ball/bomb.png');
+  tri_force = loadImage("ball/triforce.png");
+  star = loadImage("ball/star.png");
+  barrel = loadImage("ball/barrel.png");
 
   //CHARACTER SOUNDS
   jump = loadSound('sounds/jump.mp3');
@@ -167,6 +171,12 @@ function draw() {
     song.stop();
   }
 
+  if (score >= 100 && score <= 105 && gameplay_background == eldin_bridge) {
+    gameState = 4;
+    victory.play();
+    song.stop();
+  }
+
   if (score >= 0){
     gameplay_background = jungle;
     fall_ball = img1;
@@ -191,8 +201,15 @@ function draw() {
   if (score >= 75){
       gameplay_background = eldin_bridge;
       fall_ball = gem;
-      fall_balls = mushroom;
+      fall_balls = tri_force;
       fall_enem = bomb;
+    }
+
+  if (score >= 100){
+      gameplay_background = donkey_kong_original;
+      fall_ball = coin;
+      fall_balls = star;
+      fall_enem = barrel;
     }
 }
 
