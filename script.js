@@ -189,6 +189,7 @@ function draw() {
     fall_ball = coin;
     fall_balls = mushroom;
     fall_enem = shell;
+    song = mario_theme;
   }
 
   if (score >= 50 && score <= 75){
@@ -196,6 +197,7 @@ function draw() {
     fall_ball = coin;
     fall_balls = dark_moon;
     fall_enem = ghost;
+    song = luigi_theme;
   }
 
   if (score >= 75){
@@ -203,6 +205,7 @@ function draw() {
       fall_ball = gem;
       fall_balls = tri_force;
       fall_enem = bomb;
+      song = link_theme;
     }
 
   if (score >= 100){
@@ -210,6 +213,7 @@ function draw() {
       fall_ball = coin;
       fall_balls = star;
       fall_enem = barrel;
+      song = dk_theme;
     }
 }
 
@@ -419,7 +423,7 @@ function keyPressed() {
     multiballs.length = 0;
     coconuts.length = 0;
     menuOk.play();
-    song.loop();
+    song.play();
   }
   
   if (gameState != 2 && keyCode == 13) {
@@ -438,8 +442,8 @@ function keyPressed() {
     dk.play();
     menuOk.play();
     song.stop();
-    song = dk_theme;
-    song.loop();
+    song = diddy_theme;
+    song.play();
     gameState = 2;
   }
 
@@ -450,7 +454,7 @@ function keyPressed() {
     menuOk.play();
     song.stop();
     song = diddy_theme;
-    song.loop();
+    song.play();
     gameState = 2
   }
 
@@ -460,8 +464,8 @@ function keyPressed() {
     mario.play();
     menuOk.play();
     song.stop();
-    song = mario_theme;
-    song.loop();
+    song = diddy_theme;
+    song.play();
     gameState = 2
   }
 
@@ -471,8 +475,8 @@ function keyPressed() {
     luigi.play();
     menuOk.play();
     song.stop();
-    song = luigi_theme;
-    song.loop();
+    song = diddy_theme;
+    song.play();
     gameState = 2
   }
 
@@ -482,8 +486,8 @@ function keyPressed() {
     link.play();
     menuOk.play();
     song.stop();
-    song = link_theme;
-    song.loop();
+    song = diddy_theme;
+    song.play();
     gameState = 2
   }
 
