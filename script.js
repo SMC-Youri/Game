@@ -188,9 +188,15 @@ if (score >= 125 && score <= 130 && gameplay_background == donkey_kong_original)
     song.stop();
   }
 
+if (score >= 150 && score <= 155 && gameplay_background == kirby_tree) {
+    gameState = 4;
+    victory.play();
+    song.stop();
+  }
+
   //De fall_ball, fall_balls en fall_enem moesten voor elk level anders zijn maar dat kon het programma niet aan (error 429).
   if (score >= 0){
-    gameplay_background = final_level;
+    gameplay_background = jungle;
     fall_ball = coin;
     fall_balls = star;
     fall_enem = shell;
@@ -228,12 +234,20 @@ if (score >= 125 && score <= 130 && gameplay_background == donkey_kong_original)
       song = dk_theme;
     }
 
-if (score >= 125){
+if (score >= 125 && score <= 150){
       gameplay_background = kirby_tree;
       fall_ball = coin;
       fall_balls = star;
       fall_enem = shell;
       song = kirby_theme;
+    }
+
+if (score >= 150){
+      gameplay_background = final_level;
+      fall_ball = coin;
+      fall_balls = star;
+      fall_enem = shell;
+      song = smg2;
     }
 }
 
