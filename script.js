@@ -54,16 +54,16 @@ function preload() {
   img14 = loadImage('ball/bananas.png');
   img15 = loadImage('ball/coconut.png');
   coin = loadImage('ball/coin.png');
-  mushroom = loadImage('ball/mushroom.png');
+//  mushroom = loadImage('ball/mushroom.png');
   shell = loadImage('ball/shell.png');
-  ghost = loadImage('ball/ghost.png');
-  dark_moon = loadImage('ball/dark_moon.png');
-  gem = loadImage('ball/gem.png');
-  bomb = loadImage('ball/bomb.png');
-  tri_force = loadImage("ball/triforce.png");
+//  ghost = loadImage('ball/ghost.png');
+//  dark_moon = loadImage('ball/dark_moon.png');
+//  gem = loadImage('ball/gem.png');
+//  bomb = loadImage('ball/bomb.png');
+//  tri_force = loadImage("ball/triforce.png");
   star = loadImage("ball/star.png");
-  barrel = loadImage("ball/barrel.png");
-  gordo = loadImage("ball/gordo.png");
+//  barrel = loadImage("ball/barrel.png");
+//  gordo = loadImage("ball/gordo.png");
 
   //CHARACTER SOUNDS
   jump = loadSound('sounds/jump.mp3');
@@ -98,6 +98,7 @@ function preload() {
   gamecube = loadSound('sounds/gamecube.mp3');
   gamecube_gif = loadImage('gamecube.gif');
 }
+
 let bw = 30;
 let bh = 30;
 let ballx = this.x;
@@ -195,7 +196,7 @@ if (score >= 125 && score <= 130 && gameplay_background == donkey_kong_original)
   if (score >= 25 && score <= 50){
     gameplay_background = mario_bros;
     fall_ball = coin;
-    fall_balls = mushroom;
+    fall_balls = star;
     fall_enem = shell;
     song = mario_theme;
   }
@@ -203,16 +204,16 @@ if (score >= 125 && score <= 130 && gameplay_background == donkey_kong_original)
   if (score >= 50 && score <= 75){
     gameplay_background = luigi_mansion;
     fall_ball = coin;
-    fall_balls = dark_moon;
-    fall_enem = ghost;
+    fall_balls = star;
+    fall_enem = shell;
     song = luigi_theme;
   }
 
   if (score >= 75 && score <= 100){
       gameplay_background = eldin_bridge;
-      fall_ball = gem;
-      fall_balls = tri_force;
-      fall_enem = bomb;
+    fall_ball = coin;
+    fall_balls = star;
+    fall_enem = shell;
       song = link_theme;
     }
 
@@ -220,7 +221,7 @@ if (score >= 125 && score <= 130 && gameplay_background == donkey_kong_original)
       gameplay_background = donkey_kong_original;
       fall_ball = coin;
       fall_balls = star;
-      fall_enem = barrel;
+      fall_enem = shell;
       song = dk_theme;
     }
 
@@ -228,7 +229,7 @@ if (score >= 125){
       gameplay_background = kirby_tree;
       fall_ball = coin;
       fall_balls = star;
-      fall_enem = barrel;
+      fall_enem = shell;
       song = kirby_theme;
     }
 }
@@ -399,15 +400,35 @@ function gameplay() {
 }
 
 function gameover(){
-  background("blue");
-  text("gameover");
+  background(0);
+  fill(255);
+  text("current score:", 475, 250,);
+  text(score, 750, 325,);
+  text("previous highscore:", 425, 400,);
+  text(highscore, 750, 475,);
+
+  if (i % 80 === 0){
+  	fill(0);
+    text("press ENTER to continue", 325, 600,);
+  } else {
+    fill(255);
+    text("press ENTER to continue", 325, 600,);
+  }
 }
 
 function newhighscore(){
-  background("green");
-  text("New highscore:", 500, 300,)
-  text(highscore, 750, 375,)
-  text("press ENTER to continue", 350, 500,);
+  background(0);
+  fill(255);
+  text("New highscore:", 500, 300,);
+  text(highscore, 750, 375,);
+  
+    if (i % 80 === 0){
+  	fill(0);
+    text("press ENTER to continue", 350, 500,);
+  } else {
+    fill(255);
+    text("press ENTER to continue", 350, 500,);
+  }
 }
 
 function keyPressed() {
