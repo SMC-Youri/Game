@@ -14,6 +14,7 @@ function preload() {
   luigi_mansion = loadImage('background/luigi_mansion.jpg');
   eldin_bridge = loadImage('background/legend_of_zelda.jpg');
   donkey_kong_original = loadImage('background/dk.jpg');
+  kirby_tree = loadImage('background/tree.jpg');
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
 
@@ -62,6 +63,7 @@ function preload() {
   tri_force = loadImage("ball/triforce.png");
   star = loadImage("ball/star.png");
   barrel = loadImage("ball/barrel.png");
+  gordo = loadImage("ball/gordo.png");
 
   //CHARACTER SOUNDS
   jump = loadSound('sounds/jump.mp3');
@@ -177,6 +179,12 @@ function draw() {
     song.stop();
   }
 
+if (score >= 125 && score <= 130 && gameplay_background == donkey_kong_original) {
+    gameState = 4;
+    victory.play();
+    song.stop();
+  }
+
   if (score >= 0){
     gameplay_background = jungle;
     fall_ball = img1;
@@ -200,7 +208,7 @@ function draw() {
     song = luigi_theme;
   }
 
-  if (score >= 75){
+  if (score >= 75 && score <= 100){
       gameplay_background = eldin_bridge;
       fall_ball = gem;
       fall_balls = tri_force;
@@ -208,12 +216,20 @@ function draw() {
       song = link_theme;
     }
 
-  if (score >= 100){
+  if (score >= 100 && score <= 125){
       gameplay_background = donkey_kong_original;
       fall_ball = coin;
       fall_balls = star;
       fall_enem = barrel;
       song = dk_theme;
+    }
+
+if (score >= 125){
+      gameplay_background = kirby_tree;
+      fall_ball = coin;
+      fall_balls = star;
+      fall_enem = barrel;
+      song = kirby_theme;
     }
 }
 
@@ -497,7 +513,7 @@ function keyPressed() {
     kirby.play();
     menuOk.play();
     song.stop();
-    song = kirby_theme;
+    song = diddy_theme;
     song.loop();
     gameState = 2
   }
