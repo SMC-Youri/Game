@@ -15,6 +15,7 @@ function preload() {
   eldin_bridge = loadImage('background/legend_of_zelda.jpg');
   donkey_kong_original = loadImage('background/dk.jpg');
   kirby_tree = loadImage('background/tree.jpg');
+  final_level = loadImage('background/final_level.jpg');
   char_sel = loadImage('background/char_sel.jpg');
   title = loadImage('background/title.jpg');
 
@@ -50,9 +51,9 @@ function preload() {
   img27 = loadImage('characters/kirby_j_l.png');
 
   //OBJECTS
-  img1 = loadImage('ball/banana.png');
-  img14 = loadImage('ball/bananas.png');
-  img15 = loadImage('ball/coconut.png');
+//  img1 = loadImage('ball/banana.png');
+//  img14 = loadImage('ball/bananas.png');
+//  img15 = loadImage('ball/coconut.png');
   coin = loadImage('ball/coin.png');
 //  mushroom = loadImage('ball/mushroom.png');
   shell = loadImage('ball/shell.png');
@@ -81,6 +82,7 @@ function preload() {
   luigi_theme = loadSound('themes/luigi_theme.mp3');
   link_theme = loadSound('themes/link_theme.mp3');
   diddy_theme = loadSound('themes/diddy_theme.mp3');
+  smg2 = loadSound('themes/SMG2.mp3');
   smash_theme = loadSound('themes/smash_theme.mp3');
 
   //OBJECT SOUNDS
@@ -186,11 +188,12 @@ if (score >= 125 && score <= 130 && gameplay_background == donkey_kong_original)
     song.stop();
   }
 
+  //De fall_ball, fall_balls en fall_enem moesten voor elk level anders zijn maar dat kon het programma niet aan (error 429).
   if (score >= 0){
-    gameplay_background = jungle;
-    fall_ball = img1;
-    fall_balls = img14;
-    fall_enem = img15;
+    gameplay_background = final_level;
+    fall_ball = coin;
+    fall_balls = star;
+    fall_enem = shell;
   }
   
   if (score >= 25 && score <= 50){
@@ -463,7 +466,7 @@ function keyPressed() {
     song.play();
   }
   
-  if (gameState != 2 && keyCode == 13) {
+  if (gameState != 2 && gameState != 1 && gameState != 0 && keyCode == 13) {
     gameState = 1;
     balls.length = 0;
     multiballs.length = 0;
