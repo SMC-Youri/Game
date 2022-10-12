@@ -479,6 +479,15 @@ function keyPressed() {
     menuOk.play();
     song.play();
   }
+
+  if (gameState == 4 && keyCode == 13 && score >= 150){
+    gameState = 2;
+    balls.length = 0;
+    multiballs.length = 0;
+    coconuts.length = 0;
+    menuOk.play();
+    song.loop();
+  }
   
   if (gameState != 2 && gameState != 1 && gameState != 0 && keyCode == 13) {
     gameState = 1;
