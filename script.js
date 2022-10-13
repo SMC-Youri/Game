@@ -296,6 +296,8 @@ function newLevel() {
 function characters (){
   background(char_sel);
   fill(0);
+  text("Highscore:", 25, 45);
+  text(highscore, 410, 45);
   text("1", 365, 360);
   text("2", 365, 655);
   text("3", 740, 360);
@@ -386,12 +388,8 @@ function gameplay() {
     gameState = 9;
     highscore = score;
     storeItem("highscore", highscore);
-    lives = 3;
-    score = 0;
   } else if (lives <= 0 && score <= highscore){
     gameState = 8;
-    lives = 3;
-    score = 0;
     dead.play();
   }
   
@@ -425,8 +423,8 @@ function gameover(){
   fill(255);
   text("current score:", 475, 250,);
   text(score, 750, 325,);
-  text("previous highscore:", 425, 400,);
-  text(highscore, 750, 475,);
+  text("Highscore:", 600, 400,);
+  text(highscore, 735, 475,);
 
   if (i % 80 === 0){
   	fill(0);
@@ -498,6 +496,8 @@ function keyPressed() {
     balls.length = 0;
     multiballs.length = 0;
     coconuts.length = 0;
+    lives = 3;
+    score = 0;
     menuOk.play();
     song = smash_theme;
     song.loop();
