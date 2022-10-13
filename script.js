@@ -1,3 +1,4 @@
+
 function setup() {
   createCanvas(1500, 800);
   textFont("atari", 25);
@@ -67,38 +68,38 @@ function preload() {
 //  gordo = loadImage("ball/gordo.png");
 
   //CHARACTER SOUNDS
-  jump = loadSound('sounds/jump.mp3');
-  mario = loadSound('sounds/mario.mp3');
-  link = loadSound('sounds/link.mp3');
-  kirby = loadSound('sounds/kirby.mp3');
-  dk = loadSound('sounds/dk.mp3');
-  diddy = loadSound('sounds/diddy.mp3');
-  luigi = loadSound('sounds/luigi.mp3');
+  jump = loadSound('sounds/jump.ogg');
+//  mario = loadSound('sounds/mario.ogg');
+//  link = loadSound('sounds/link.ogg');
+//  kirby = loadSound('sounds/kirby.ogg');
+//  dk = loadSound('sounds/dk.ogg');
+//  diddy = loadSound('sounds/diddy.ogg');
+//  luigi = loadSound('sounds/luigi.ogg');
 
   //BACKGROUND THEMES
-  mario_theme = loadSound('themes/mario_theme.mp3');
-  kirby_theme = loadSound('themes/kirby_theme.mp3');
-  dk_theme = loadSound('themes/dk_theme.mp3');
-  luigi_theme = loadSound('themes/luigi_theme.mp3');
-  link_theme = loadSound('themes/link_theme.mp3');
-  diddy_theme = loadSound('themes/diddy_theme.mp3');
-  smg2 = loadSound('themes/SMG2.mp3');
-  smash_theme = loadSound('themes/smash_theme.mp3');
+  mario_theme = loadSound('themes/mario_theme.ogg');
+  kirby_theme = loadSound('themes/kirby_theme.ogg');
+  dk_theme = loadSound('themes/dk_theme.ogg');
+  luigi_theme = loadSound('themes/luigi_theme.ogg');
+  link_theme = loadSound('themes/link_theme.ogg');
+  diddy_theme = loadSound('themes/diddy_theme.ogg');
+  smg2 = loadSound('themes/SMG2.ogg');
+  smash_theme = loadSound('themes/smash_theme.ogg');
 
   //OBJECT SOUNDS
-  splat = loadSound('sounds/fail.mp3');
-  coconut = loadSound('sounds/coconut.mp3');
-  collect = loadSound('sounds/collect.mp3');
-  collects = loadSound('sounds/collects.mp3');
+  splat = loadSound('sounds/fail.ogg');
+  coconut = loadSound('sounds/coconut.ogg');
+  collect = loadSound('sounds/collect.ogg');
+  collects = loadSound('sounds/collects.ogg');
 
   //MENU SOUNDS
-  menuOk = loadSound('sounds/menuOk.mp3');
-  dead = loadSound('sounds/dead.mp3');
-  victory = loadSound('sounds/victory.mp3');
+  menuOk = loadSound('sounds/menuOk.ogg');
+  dead = loadSound('sounds/dead.ogg');
+  victory = loadSound('sounds/victory.ogg');
 
   //GAMECUBE
-  gamecube = loadSound('sounds/gamecube.mp3');
-  gamecube_gif = loadImage('gamecube.gif');
+//  gamecube = loadSound('sounds/gamecube.ogg');
+//  gamecube_gif = loadImage('gamecube.gif');
 }
 
 let bw = 30;
@@ -119,7 +120,6 @@ var multiballs = [];
 var coconuts = [];
 var isTwoPlayer = false;
 var i = 0;
-
 
 function draw() {
   i = i + 1
@@ -170,7 +170,7 @@ function draw() {
     song.stop();
   }
 
-  if (score >= 75 && score <= 80 && gameplay_background == luigi_mansion) {
+  if (score >= 75 && score <= 80 && gameplay_background == final_level) {
     gameState = 4;
     victory.play();
     song.stop();
@@ -211,11 +211,11 @@ if (score >= 150 && score <= 155 && gameplay_background == kirby_tree) {
   }
 
   if (score >= 50 && score <= 75){
-    gameplay_background = luigi_mansion;
+    gameplay_background = final_level;
     fall_ball = coin;
     fall_balls = star;
     fall_enem = shell;
-    song = luigi_theme;
+    song = smg2;
   }
 
   if (score >= 75 && score <= 100){
@@ -243,11 +243,11 @@ if (score >= 125 && score <= 150){
     }
 
 if (score >= 150){
-      gameplay_background = final_level;
+      gameplay_background = luigi_mansion;
       fall_ball = coin;
       fall_balls = star;
       fall_enem = shell;
-      song = smg2;
+      song = luigi_theme;
     }
 }
 
@@ -285,15 +285,16 @@ function newLevel() {
   }
 }
 
-function cube_anim() {
-  background(10);
-  image(gamecube_gif, 530, 275);
-  
-  setInterval(function(){if(gameState == 5){gameState = 3}}, 5500)
-}
+//function cube_anim() {
+//  background(10);
+//  image(gamecube_gif, 530, 275);
+//  
+//  setInterval(function(){if(gameState == 5){gameState = 3}}, 5500)
+//}
 
 function characters (){
   background(char_sel);
+  fill(0);
   text("1", 365, 360);
   text("2", 365, 655);
   text("3", 740, 360);
@@ -304,6 +305,7 @@ function characters (){
 
 function gameplay() {
   background(gameplay_background);
+  fill(0);
   text("score:", 25, 45);
   text(score, 250, 45);
   text("lives:", 1220, 45);
@@ -452,23 +454,15 @@ function keyPressed() {
   if (gameState == 0 && keyCode == 49) {
     isTwoPlayer = false;
     menuOk.play();
-    gameState = 5;
-    gamecube.play();
+    gameState = 3;
+//    gamecube.play();
   }
 
   if (gameState == 0 && keyCode == 50) {
     isTwoPlayer = true;
     menuOk.play();
-    gameState = 5;
-    gamecube.play();
-  }
-
-  if (keyCode == 27){
-    gameState = 0;
-    balls.length = 0;
-    multiballs.length = 0;
-    coconuts.length = 0;
-    menuOk.play();
+    gameState = 3;
+//    gamecube.play();
   }
 
   if (gameState == 4 && keyCode == 13){
@@ -502,7 +496,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2, img16, img22);
     player2 = new Player2(img4, img3, img17, img23);
-    dk.play();
+//    dk.play();
     menuOk.play();
     song.stop();
     song = diddy_theme;
@@ -513,7 +507,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 50) {
     player = new Player(img5, img4, img17, img23);
     player2 = new Player2(img3, img2, img16, img22);
-    diddy.play();
+//    diddy.play();
     menuOk.play();
     song.stop();
     song = diddy_theme;
@@ -524,7 +518,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 51) {
     player = new Player(img7, img6, img18, img24);
     player2 = new Player2(img9, img8, img19, img25);
-    mario.play();
+//    mario.play();
     menuOk.play();
     song.stop();
     song = diddy_theme;
@@ -535,7 +529,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 52) {
     player = new Player(img9, img8, img19, img25);
     player2 = new Player2(img7, img6, img18, img24);
-    luigi.play();
+//    luigi.play();
     menuOk.play();
     song.stop();
     song = diddy_theme;
@@ -546,7 +540,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 53) {
     player = new Player(img11, img10, img20, img26);
     player2 = new Player2(img13, img12, img21, img27);
-    link.play();
+//    link.play();
     menuOk.play();
     song.stop();
     song = diddy_theme;
@@ -557,7 +551,7 @@ function keyPressed() {
   if (gameState == 1 && keyCode == 54) {
     player = new Player(img13, img12, img21, img27);
     player2 = new Player2(img11, img10, img20, img26);
-    kirby.play();
+//    kirby.play();
     menuOk.play();
     song.stop();
     song = diddy_theme;
