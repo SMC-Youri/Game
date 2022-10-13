@@ -171,7 +171,7 @@ function draw() {
     song.stop();
   }
 
-  if (score >= 75 && score <= 80 && gameplay_background == final_level) {
+  if (score >= 75 && score <= 80 && gameplay_background == luigi_mansion) {
     gameState = 4;
     victory.play();
     song.stop();
@@ -212,11 +212,11 @@ if (score >= 150 && score <= 155 && gameplay_background == kirby_tree) {
   }
 
   if (score >= 50 && score <= 75){
-    gameplay_background = final_level;
+    gameplay_background = luigi_mansion;
     fall_ball = coin;
     fall_balls = star;
     fall_enem = shell;
-    song = smg2;
+    song = luigi_theme;
   }
 
   if (score >= 75 && score <= 100){
@@ -244,11 +244,11 @@ if (score >= 125 && score <= 150){
     }
 
 if (score >= 150){
-      gameplay_background = luigi_mansion;
+      gameplay_background = final_level;
       fall_ball = coin;
       fall_balls = star;
       fall_enem = shell;
-      song = luigi_theme;
+      song = smg2;
     }
 }
 
