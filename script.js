@@ -111,7 +111,6 @@ let highscore;
 
 var gameState = 0;
 var score = 0;
-//var highscore = 0;
 var lives = 3;
 var a = 0;
 var balls = [];
@@ -386,6 +385,7 @@ function gameplay() {
   if (lives <= 0 && score > highscore){
     gameState = 9;
     highscore = score;
+    storeItem("highscore", highscore);
     lives = 3;
     score = 0;
   } else if (lives <= 0 && score <= highscore){
@@ -453,19 +453,11 @@ function newhighscore(){
 }
 
 function GetHighscore() {  
-  //let highscore = getItem("highscore");
   if (highscore !== null) {
     hScore.value(highscore.h);
   }
   hScore.changed(storeData);
   background(0);
-}
-
-function storeData() {
-  let highscore = {
-    h: hScore.value(),
-  };
-  storeItem("highscore", highscore);
 }
 
 function keyPressed() {
@@ -513,7 +505,7 @@ function keyPressed() {
 
   if (gameState == 1 && keyCode == 49) {
     player = new Player(img3, img2, img16, img22);
-    player2 = new Player2(img4, img3, img17, img23);
+    player2 = new Player2(img5, img4, img17, img23);
 //    dk.play();
     menuOk.play();
     song.stop();
