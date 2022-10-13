@@ -3,6 +3,7 @@ function setup() {
   createCanvas(1500, 800);
   textFont("atari", 25);
   textSize(40);
+  highscore = getItem("highscore");
 }
 
 function preload() {
@@ -106,10 +107,11 @@ let bw = 30;
 let bh = 30;
 let ballx = this.x;
 let bally = this.y;
+let highscore;
 
 var gameState = 0;
 var score = 0;
-var highscore = 0;
+//var highscore = 0;
 var lives = 3;
 var a = 0;
 var balls = [];
@@ -448,6 +450,22 @@ function newhighscore(){
     fill(255);
     text("press ENTER to continue", 350, 500,);
   }
+}
+
+function GetHighscore() {  
+  //let highscore = getItem("highscore");
+  if (highscore !== null) {
+    hScore.value(highscore.h);
+  }
+  hScore.changed(storeData);
+  background(0);
+}
+
+function storeData() {
+  let highscore = {
+    h: hScore.value(),
+  };
+  storeItem("highscore", highscore);
 }
 
 function keyPressed() {
