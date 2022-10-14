@@ -488,7 +488,7 @@ function keyPressed() {
 //    gamecube.play();
   }
 
-  if (gameState == 4 && keyCode == 13){
+  if (gameState == 4 && keyCode == 13 && score < 150){
     gameState = 2;
     balls.length = 0;
     multiballs.length = 0;
@@ -497,7 +497,7 @@ function keyPressed() {
     song.play();
   }
 
-  if (gameState == 4 && keyCode == 13 && song == smg2){
+  if (gameState == 4 && keyCode == 13 && score >= 150){
     gameState = 2;
     balls.length = 0;
     multiballs.length = 0;
