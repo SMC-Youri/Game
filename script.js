@@ -1,4 +1,3 @@
-
 function setup() {
   createCanvas(1500, 800);
   textFont("atari", 25);
@@ -302,7 +301,7 @@ function characters (){
   fill(0);
   text("Highscore:", 25, 45);
   
-    if (highscore !== null) {
+  if (highscore !== null) {
     text(highscore, 410, 45);
   }
   
