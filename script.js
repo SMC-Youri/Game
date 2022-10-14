@@ -145,8 +145,12 @@ function draw() {
     newLevel();
   }
 
-  if (gameState == 5){
-    cube_anim();
+//  if (gameState == 5){
+//    cube_anim();
+//  }
+
+  if (gameState == 6){
+    pause();
   }
 
   if (gameState == 8) {
@@ -458,6 +462,13 @@ function GetHighscore() {
   background(0);
 }
 
+function pause() {
+  background(gameplay_background);
+  fill(255);
+  text("PAUSE", 635, 425,);
+  text("press C to continue", 425, 550,);
+}
+
 function keyPressed() {
   if (gameState == 0 && keyCode == 49) {
     isTwoPlayer = false;
@@ -490,8 +501,18 @@ function keyPressed() {
     menuOk.play();
     song.loop();
   }
+
+  if (gameState == 2 && keyCode == 80){
+    gameState = 6;
+    menuOk.play();
+  }
+
+  if (gameState == 6 && keyCode == 67){
+    gameState = 2;
+    menuOk.play();
+  }
   
-  if (gameState != 2 && gameState != 1 && gameState != 0 && keyCode == 13) {
+  if (gameState != 6 && gameState != 2 && gameState != 1 && gameState != 0 && keyCode == 13) {
     gameState = 1;
     balls.length = 0;
     multiballs.length = 0;
