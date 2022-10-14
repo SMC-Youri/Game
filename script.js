@@ -301,7 +301,11 @@ function characters (){
   background(char_sel);
   fill(0);
   text("Highscore:", 25, 45);
-  text(highscore, 410, 45);
+  
+    if (highscore !== null) {
+    text(highscore, 410, 45);
+  }
+  
   text("1", 365, 360);
   text("2", 365, 655);
   text("3", 740, 360);
