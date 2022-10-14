@@ -497,7 +497,7 @@ function keyPressed() {
     song.play();
   }
 
-  if (gameState == 4 && keyCode == 13 && score >= 150){
+  if (gameState == 4 && keyCode == 13 && song == smg2){
     gameState = 2;
     balls.length = 0;
     multiballs.length = 0;
